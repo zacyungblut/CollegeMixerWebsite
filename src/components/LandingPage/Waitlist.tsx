@@ -25,6 +25,12 @@ export const Waitlist: React.FC = () => {
       return;
     }
 
+    if (email.endsWith('@uwo.ca')) {
+      alert("You'll need your school email for when you make your account, but for now please enter your personal email")
+      setIsLoading(false);
+      return;
+    }
+
     setIsLoading(true);
 
     
