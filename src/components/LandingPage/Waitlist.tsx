@@ -81,9 +81,9 @@ export const Waitlist: React.FC = () => {
                 </div>
                 <div className="w-1/2 px-2 mt-4">
                   <label className="block uppercase tracking-wide text-gray-900 text-xs font-bold mb-2" htmlFor="name">
-                    Email
+                    Personal Email
                   </label>
-                  <input className="appearance-none shadow-md block w-full truncate bg-white text-gray-700 border border-gray-200 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" type="email" placeholder="jsmith@uwo.ca" value={email} onChange={(e) => setEmail(e.target.value)} />
+                  <input className="appearance-none shadow-md block w-full truncate bg-white text-gray-700 border border-gray-200 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" type="email" placeholder="jsmith@gmail.com" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
               </div>
 
