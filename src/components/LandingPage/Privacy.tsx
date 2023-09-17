@@ -129,7 +129,9 @@ Winder is not intended for children under 13 years of age, and we do not knowing
 Any changes we make to our privacy policy in the future will be posted on this page with an updated revision date.
 10. Contact Information
 
-For questions or comments about this privacy policy and our privacy practices, contact us at: [Your Contact Information] 
+For questions or comments about this privacy policy and our privacy practices, contact us:
+
+support@winderapp.com
 
         </div>
 
