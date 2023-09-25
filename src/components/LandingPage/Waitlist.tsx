@@ -7,7 +7,7 @@ import { CircularProgress } from '@mui/material';
 import { useAppSelector, useAppDispatch } from '../../hooks/hooks';
 import { toast } from 'react-toastify';
 import { subscribeToWaitlist } from '../../actions/emailMarketing';
-import WinderLogo from "../../assets/Winder.png";
+import WinderLogo from "../../assets/WinderLogo.gif";
 
 
 export const Waitlist: React.FC = () => {
@@ -72,9 +72,11 @@ export const Waitlist: React.FC = () => {
         <div className="container max-w-4xl my-20 mx-auto px-4 py-8 mb-12 shadow-lg shadow-purple-300 bg-gradient-to-r from-purple-500 to-purple-400 bg-opacity-50 rounded-2xl">
           <div className="text-4xl md:text-7xl pt-2 text-center text-white font-extrabold my-2 mb-5">Join the waitlist</div>
           <h3 className="text-md md:text-base font-base mb-10 text-gray-900 text-center">
-            Be first in line to get access to{' '}
-            <span className="font-semibold underline">the dating app of the future</span>
+            Get exclusive first access to{' '}
+            <span className="font-semibold underline">Western's dating app</span>
           </h3>
+
+          <img src={WinderLogo} className="w-[100px] h-[100px] mx-auto" />
 
           <form className="w-full max-w-lg mx-auto"onSubmit={handleSubmit}>
             <div className="flex flex-wrap">
@@ -102,7 +104,10 @@ export const Waitlist: React.FC = () => {
           </form>
           {/* <img src={TiresImg} alt="Tires" className=" absolute invisible -mr-4 lg:visible bottom-44 z-5 left-0 lg:w-40  xl:w-64 h-auto " /> */}
           <div className="flex justify-center items-center pt-6 pb-2 ">
-            <span className="mr-3 text-sm text-gray-700 ">We'll send you updates periodically with reminders and more information</span>
+            <span className="mr-3 text-sm text-gray-700 ">Winder is not affiliated with Western University</span>
+          </div>
+          <div className="flex justify-center items-center pt-2 pb-2 ">
+            {/* <span className="mr-3 text-sm text-gray-700 ">We'll send you updates periodically with reminders and more information</span> */}
           </div>
 
         </div>
