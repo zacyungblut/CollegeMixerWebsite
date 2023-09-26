@@ -73,7 +73,7 @@ export const Waitlist: React.FC = () => {
           <div className="text-4xl md:text-7xl pt-2 text-center text-white font-extrabold my-2 mb-5">Join the waitlist</div>
           <h3 className="text-md md:text-base font-base mb-10 text-gray-900 text-center">
             Get exclusive first access to{' '}
-            <span className="font-semibold underline">Western's dating app</span>
+            <span className="font-semibold">Western's dating app</span>
           </h3>
 
           <img src={WinderLogo} className="w-[100px] h-[100px] mx-auto" />
