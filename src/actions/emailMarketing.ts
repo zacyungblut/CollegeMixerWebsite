@@ -5,7 +5,11 @@ export const subscribeToWaitlist = (email: string, firstName: string) => async (
 
     try {
 
+        console.log('subsribing with', email, firstName);
+
+
         const { data } = await api.subscribeToWaitlist(email, firstName);
+
   
         return data;
     
