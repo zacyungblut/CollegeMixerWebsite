@@ -1,43 +1,56 @@
-import React, { useState } from "react";
-import WinderLogo from "../assets/WinderLogo.gif";
-
-
+import React, { useState, useEffect } from "react";
+import WinderLogo from "src/assets/WinderLogo.gif";
+import { Line } from 'react-chartjs-2';
+import axios from 'axios';
 
 const Dashboard = () => {
+    const [notificationSubject, setNotificationSubject] = useState("");
+    const [notificationMessage, setNotificationMessage] = useState("");
+    const [chartData, setChartData] = useState({});
+    const [loading, setLoading] = useState(true);
 
-    const [notificationSubject, setNotficationSubject] = useState("");
-    const [notificationMessage, setNotficationMessage] = useState("");
+    useEffect(() => {
+        // Replace '/api/user-data' with the actual endpoint
+        axios.get('/api/user-data')
+            .then((response) => {
+                const transformedData = transformDataForChart(response.data);
+                setChartData(transformedData);
+            })
+            .catch((error) => {
+                console.error('Error fetching user data:', error);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    }, []);
 
+    const transformDataForChart = (data) => {
+        return {
+            labels: data.map(item => item.date),
+            datasets: [{
+                label: 'Users Created Per Day',
+                data: data.map(item => item.count),
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        };
+    };
 
     return (
 
+        
         <div className="items-center justify-center p-2">
             <img src={WinderLogo} className="w-[100px] h-[100px] mx-auto my-2" />
-            {/* <h1 className="text-center my-4 font-extrabold text-5xl">Winder Admin Dashboard</h1> */}
-
-            <div className="p-4 bg-gradient-to-r from-sky-600 to-sky-700   rounded-lg">
-                <h1 className="text-white  font-semibold text-4xl">Send Notification</h1>
-                <input placeholder="Subject" className="rounded-md p-2 mt-4 h-8" value={notificationSubject} onChange={(n) => setNotficationSubject(n.target.value)}></input>
-                <div className="flex flex-row justify-between">
-                    <input placeholder="Message" className="rounded-md p-2 mt-4 h-8" value={notificationMessage} onChange={(n) => setNotficationMessage(n.target.value)}></input>
-                    <button className="p-2 text-sm shadow-md border border-black shadow-slate-600 px-10 rounded-md bg-slate-800 text-white">Send</button>
-                </div>
+            {/* Dashboard content */}
+            {/* ... */}
+            {/* Place the chart component where you want the chart to appear */}
+            <div className="my-8">
+                <h2 className="text-xl font-semibold mb-4">User Creation Chart</h2>
+                {loading ? <p>Loading Chart...</p> : <Line data={chartData} />}
             </div>
-
-            <div className="flex-row flex mt-8 gap-2">
-                <div className="border gap-4 rounded-lg w-1/2 p-2 flex items-center">
-                    <h3>Total Users:&nbsp;</h3>
-                    <h3 className="text-5xl font-semibold">17,490</h3>
-                </div>
-                <div className="border gap-4 rounded-lg w-1/2 p-2 flex items-center">
-                    <h3>User Hours:&nbsp;</h3>
-                    <h3 className="text-5xl font-semibold">846,284</h3>
-                </div>
-            </div>
-
         </div>
+    );
+};
 
-    )
-}
-
-export default Dashboard
+export default Dashboard;
