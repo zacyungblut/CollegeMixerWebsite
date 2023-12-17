@@ -4,10 +4,10 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import CancelIcon from '@mui/icons-material/CancelOutlined';
 import { Link } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
-import { useAppSelector, useAppDispatch } from '../../hooks/hooks';
+import { useAppSelector, useAppDispatch } from '../hooks/hooks';
 import { toast } from 'react-toastify';
-import { subscribeToWaitlist } from '../../actions/emailMarketing';
-import WinderLogo from "../../assets/Winder.png";
+import { subscribeToWaitlist } from '../actions/emailMarketing';
+import WinderLogo from "../assets/Winder.png";
 
 
 export const Waitlist: React.FC = () => {
@@ -72,11 +72,66 @@ export const Waitlist: React.FC = () => {
         <div className="container max-w-4xl my-20 mx-auto px-8 text-white py-8 mb-12 shadow-lg shadow-purple-300 bg-gradient-to-r from-purple-500 to-purple-400 bg-opacity-50 rounded-2xl">
         Privacy Policy for Winder
 
-        For questions, comments, or if you need support contact us:
+Last updated: [Date]
+1. Introduction
 
-        support@winderapp.com
-        
-         (or contact our CEO personally: <a href="emailto:zacyungblut@gmail.com">here</a>)
+Welcome to Winder, the dating app that connects people from around the world. We respect the privacy of our users and are committed to protecting it through our compliance with this policy.
+2. Information We Collect
+
+2.1. Personal Data
+
+When you register with Winder, we may ask you to provide certain personal information including:
+
+    Name
+    Age
+    Gender
+    Email Address
+    Location
+    Profile Pictures
+    Bio/Description
+
+2.2. Usage Data
+
+We may also collect information on how the app is accessed and used. This may include:
+
+    Your IP address
+    Device information
+    Browser type and version
+    Usage statistics
+
+3. How We Use Your Information
+
+We use the information we collect:
+
+    To provide and maintain our service.
+    To notify you about changes to our app.
+    To allow you to participate in interactive features.
+    To provide customer support.
+    For analysis and improvement of the app.
+
+4. Disclosure of Your Information
+
+We do not sell or rent personal information to third parties. However, we may disclose aggregated information about our users, which does not identify any individual, for business purposes.
+5. Security
+
+We take precautions to protect your information. When you submit sensitive information via the app, your information is protected both online and offline.
+6. Accessing and Correcting Your Information
+
+You can review and change your personal information by logging into the app and visiting your account profile page.
+7. Data Retention
+
+We will only retain your personal data for as long as necessary to fulfill the purposes we collected it for.
+8. Children Under the Age of 13
+
+Winder is not intended for children under 13 years of age, and we do not knowingly collect personal information from children under 13.
+9. Changes to the Privacy Policy
+
+Any changes we make to our privacy policy in the future will be posted on this page with an updated revision date.
+10. Contact Information
+
+For questions or comments about this privacy policy and our privacy practices, contact us:
+
+support@winderapp.com
 
         </div>
 

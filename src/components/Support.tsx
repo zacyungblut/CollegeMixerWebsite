@@ -4,10 +4,10 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import CancelIcon from '@mui/icons-material/CancelOutlined';
 import { Link } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
-import { useAppSelector, useAppDispatch } from '../../hooks/hooks';
+import { useAppSelector, useAppDispatch } from '../hooks/hooks';
 import { toast } from 'react-toastify';
-import { subscribeToWaitlist } from '../../actions/emailMarketing';
-import WinderLogo from "../../assets/WinderLogo.gif";
+import { subscribeToWaitlist } from '../actions/emailMarketing';
+import WinderLogo from "../../assets/Winder.png";
 
 
 export const Waitlist: React.FC = () => {
@@ -66,49 +66,17 @@ export const Waitlist: React.FC = () => {
           <div className="w-3/4 mx-auto">
 
           </div>
-          {/* <img className="w-40 h-auto" src={WinderLogo} /> */}
+          <img className="w-40 h-auto mx-auto mt-10" src={WinderLogo} />
 
 
-        <div className="container max-w-4xl my-20 mx-auto px-4 py-8 mb-12 shadow-lg shadow-purple-300 bg-gradient-to-r from-purple-500 to-purple-400 bg-opacity-50 rounded-2xl">
-          <div className="text-2xl md:text-4xl pt-2 text-center text-white font-semibold my-2 mb-5">Winder is live on the App Store right now!</div>
-          
-          <h3 className="text-2xl font-base mb-10 text-gray-200 text-center">
-            <a className="underline font-semibold text-blue-700" href="https://apps.apple.com/ca/app/winder/id1671245143">Download now,</a> or join our newsletter 👇
-          </h3>
+        <div className="container max-w-4xl my-20 mx-auto px-8 text-white py-8 mb-12 shadow-lg shadow-purple-300 bg-gradient-to-r from-purple-500 to-purple-400 bg-opacity-50 rounded-2xl">
+        Privacy Policy for Winder
 
-          <img src={WinderLogo} className="w-[100px] h-[100px] mx-auto" />
+        For questions, comments, or if you need support contact us:
 
-          <form className="w-full max-w-lg mx-auto"onSubmit={handleSubmit}>
-            <div className="flex flex-wrap">
-              <div className="flex flex-wrap mb-4">
-                <div className="w-1/2 px-2 mt-4">
-                  <label className="block uppercase tracking-wide text-gray-900 text-xs font-bold mb-2" htmlFor="name">
-                    First Name
-                  </label>
-                  <input className="appearance-none shadow-md block w-full truncate bg-white text-gray-700 border border-gray-200 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="name" type="text" placeholder="John" value={firstName} onChange={(n) => setFirstName(n.target.value)} />
-                </div>
-                <div className="w-1/2 px-2 mt-4">
-                  <label className="block uppercase tracking-wide text-gray-900 text-xs font-bold mb-2" htmlFor="name">
-                    Personal Email
-                  </label>
-                  <input className="appearance-none shadow-md block w-full truncate bg-white text-gray-700 border border-gray-200 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" type="email" placeholder="jsmith@gmail.com" value={email} onChange={(e) => setEmail(e.target.value)} />
-                </div>
-              </div>
-
-            </div>
-            <div className="flex items-center justify-center">
-              {!isLoading ? <button className="bg-black mx-auto mt-6 text-2xl hover:-translate-y-px hover:bg-gray-900 text-white font-bold mb-3 py-3 px-10 transition duration-200 rounded-lg focus:outline-none focus:shadow-outline" type="submit">
-                Submit
-              </button> : <CircularProgress className="items-center justify-center" size={28} style={{ color: '#000000' }} />}
-            </div>
-          </form>
-          {/* <img src={TiresImg} alt="Tires" className=" absolute invisible -mr-4 lg:visible bottom-44 z-5 left-0 lg:w-40  xl:w-64 h-auto " /> */}
-          <div className="flex justify-center items-center pt-6 pb-2 ">
-            <span className="mr-3 text-sm text-gray-700 ">Winder is not affiliated with Western University</span>
-          </div>
-          <div className="flex justify-center items-center pt-2 pb-2 ">
-            {/* <span className="mr-3 text-sm text-gray-700 ">We'll send you updates periodically with reminders and more information</span> */}
-          </div>
+        support@winderapp.com
+        
+         (or contact our CEO personally: <a href="emailto:zacyungblut@gmail.com">here</a>)
 
         </div>
 

@@ -4,10 +4,10 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import CancelIcon from '@mui/icons-material/CancelOutlined';
 import { Link } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
-import { useAppSelector, useAppDispatch } from '../../hooks/hooks';
+import { useAppSelector, useAppDispatch } from '../hooks/hooks';
 import { toast } from 'react-toastify';
-import { subscribeToWaitlist } from '../../actions/emailMarketing';
-import WinderLogo from "../../assets/Winder.png";
+import { subscribeToWaitlist } from '../actions/emailMarketing';
+import WinderLogo from "../assets/WinderLogo.gif";
 
 
 export const Waitlist: React.FC = () => {
@@ -66,72 +66,49 @@ export const Waitlist: React.FC = () => {
           <div className="w-3/4 mx-auto">
 
           </div>
-          <img className="w-40 h-auto mx-auto mt-10" src={WinderLogo} />
+          {/* <img className="w-40 h-auto" src={WinderLogo} /> */}
 
 
-        <div className="container max-w-4xl my-20 mx-auto px-8 text-white py-8 mb-12 shadow-lg shadow-purple-300 bg-gradient-to-r from-purple-500 to-purple-400 bg-opacity-50 rounded-2xl">
-        Privacy Policy for Winder
+        <div className="container max-w-4xl my-20 mx-auto px-4 py-8 mb-12 shadow-lg shadow-purple-300 bg-gradient-to-r from-purple-500 to-purple-400 bg-opacity-50 rounded-2xl">
+          <div className="text-2xl md:text-4xl pt-2 text-center text-white font-semibold my-2 mb-5">Winder is live on the App Store right now!</div>
+          
+          <h3 className="text-2xl font-base mb-10 text-gray-200 text-center">
+            <a className="underline font-semibold text-blue-700" href="https://apps.apple.com/ca/app/winder/id1671245143">Download now,</a> or join our newsletter 👇
+          </h3>
 
-Last updated: [Date]
-1. Introduction
+          <img src={WinderLogo} className="w-[100px] h-[100px] mx-auto" />
 
-Welcome to Winder, the dating app that connects people from around the world. We respect the privacy of our users and are committed to protecting it through our compliance with this policy.
-2. Information We Collect
+          <form className="w-full max-w-lg mx-auto"onSubmit={handleSubmit}>
+            <div className="flex flex-wrap">
+              <div className="flex flex-wrap mb-4">
+                <div className="w-1/2 px-2 mt-4">
+                  <label className="block uppercase tracking-wide text-gray-900 text-xs font-bold mb-2" htmlFor="name">
+                    First Name
+                  </label>
+                  <input className="appearance-none shadow-md block w-full truncate bg-white text-gray-700 border border-gray-200 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="name" type="text" placeholder="John" value={firstName} onChange={(n) => setFirstName(n.target.value)} />
+                </div>
+                <div className="w-1/2 px-2 mt-4">
+                  <label className="block uppercase tracking-wide text-gray-900 text-xs font-bold mb-2" htmlFor="name">
+                    Personal Email
+                  </label>
+                  <input className="appearance-none shadow-md block w-full truncate bg-white text-gray-700 border border-gray-200 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" type="email" placeholder="jsmith@gmail.com" value={email} onChange={(e) => setEmail(e.target.value)} />
+                </div>
+              </div>
 
-2.1. Personal Data
-
-When you register with Winder, we may ask you to provide certain personal information including:
-
-    Name
-    Age
-    Gender
-    Email Address
-    Location
-    Profile Pictures
-    Bio/Description
-
-2.2. Usage Data
-
-We may also collect information on how the app is accessed and used. This may include:
-
-    Your IP address
-    Device information
-    Browser type and version
-    Usage statistics
-
-3. How We Use Your Information
-
-We use the information we collect:
-
-    To provide and maintain our service.
-    To notify you about changes to our app.
-    To allow you to participate in interactive features.
-    To provide customer support.
-    For analysis and improvement of the app.
-
-4. Disclosure of Your Information
-
-We do not sell or rent personal information to third parties. However, we may disclose aggregated information about our users, which does not identify any individual, for business purposes.
-5. Security
-
-We take precautions to protect your information. When you submit sensitive information via the app, your information is protected both online and offline.
-6. Accessing and Correcting Your Information
-
-You can review and change your personal information by logging into the app and visiting your account profile page.
-7. Data Retention
-
-We will only retain your personal data for as long as necessary to fulfill the purposes we collected it for.
-8. Children Under the Age of 13
-
-Winder is not intended for children under 13 years of age, and we do not knowingly collect personal information from children under 13.
-9. Changes to the Privacy Policy
-
-Any changes we make to our privacy policy in the future will be posted on this page with an updated revision date.
-10. Contact Information
-
-For questions or comments about this privacy policy and our privacy practices, contact us:
-
-support@winderapp.com
+            </div>
+            <div className="flex items-center justify-center">
+              {!isLoading ? <button className="bg-black mx-auto mt-6 text-2xl hover:-translate-y-px hover:bg-gray-900 text-white font-bold mb-3 py-3 px-10 transition duration-200 rounded-lg focus:outline-none focus:shadow-outline" type="submit">
+                Submit
+              </button> : <CircularProgress className="items-center justify-center" size={28} style={{ color: '#000000' }} />}
+            </div>
+          </form>
+          {/* <img src={TiresImg} alt="Tires" className=" absolute invisible -mr-4 lg:visible bottom-44 z-5 left-0 lg:w-40  xl:w-64 h-auto " /> */}
+          <div className="flex justify-center items-center pt-6 pb-2 ">
+            <span className="mr-3 text-sm text-gray-700 ">Winder is not affiliated with Western University</span>
+          </div>
+          <div className="flex justify-center items-center pt-2 pb-2 ">
+            {/* <span className="mr-3 text-sm text-gray-700 ">We'll send you updates periodically with reminders and more information</span> */}
+          </div>
 
         </div>
 
