@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'https://winderapp2-c79c93c92af4.herokuapp.com' });
+const API = axios.create({ baseURL: 'https://speedlead.herokuapp.com/' });
 
 API.interceptors.request.use((req: any) => {
   if (localStorage.getItem('profile')) {
@@ -12,7 +12,7 @@ API.interceptors.request.use((req: any) => {
 
 
 // Email marketing
-export const subscribeToWaitlist = (email: string, firstName: string) => API.post(`/email-marketing/waitlist`, {email: email, firstName: firstName});
+export const subscribeToWaitlist = (phoneNumber: string, firstName: string) => API.post(`/email-marketing/waitlist`, {phoneNumber: phoneNumber, firstName: firstName});
 
 // Analytics for internal dashboard
 export const getUserCount = () => API.get(`/api/users/count`);
