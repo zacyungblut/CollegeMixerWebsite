@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'https://speedlead.herokuapp.com/' });
+const API = axios.create({ baseURL: 'https://winderapp2-c79c93c92af4.herokuapp.com' });
 
 API.interceptors.request.use((req: any) => {
   if (localStorage.getItem('profile')) {
