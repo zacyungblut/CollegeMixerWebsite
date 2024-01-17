@@ -22,6 +22,10 @@ export const Waitlist: React.FC = () => {
     setPhoneNumber(phoneNumber + number);
   };
 
+  const handleLinkClick = (link: string) => {
+    window.open(link, '_blank');
+  }
+
   const handleSubmit = async (event: React.FormEvent) => {
     
       event.preventDefault();
@@ -97,15 +101,22 @@ export const Waitlist: React.FC = () => {
   
             </div>
             {/* <img className="w-40 h-auto" src={WinderLogo} /> */}
-  
+
+            {/* https://apps.apple.com/us/app/college-mixer/id1671245143 */}
   
           <div className="container max-w-4xl my-20 mx-auto px-4 py-8 mb-12 shadow-lg bg-[#f8f8f8] rounded-2xl">
             {/* <div className="text-2xl md:text-4xl pt-2 text-center text-white font-semibold my-2 mb-5">Guelph Mixer</div> */}
   
             <img src={WinderLogo} className="w-[100px] h-auto mx-auto" />
 
-            <h1 className='text-center text-2xl font-semibold mt-8'>We got you.</h1>
-  
+            <h1 className='text-center text-2xl font-semibold mt-8'>We got your contact</h1>
+
+            <div className="items-center justify-center flex flex-col gap-4 mt-10">
+              <button onClick={()=>{handleLinkClick("https://apps.apple.com/us/app/college-mixer/id1671245143")}} className="bg-[#E1306C] rounded-lg p-3 text-white font-semibold transition-all duration-200 hover:bg-pink-600 hover:scale-95">Pre-download the app</button>
+              <h1>OR</h1>
+              <button onClick={()=>{handleLinkClick("https://www.bouncelife.com//events/65a32371a83a4aa425897c1c?t=65a58ca1f93216436308914b")}} className="bg-slate-700 rounded-lg p-3 text-white font-semibold transition-all duration-200 hover:bg-blue-900 hover:scale-95">Get Launch Party Tickets </button>
+              <span className="text-xs text-gray-700">(Launch party is Jan 19 at Palace)</span>
+            </div>
             
             {/* <img src={TiresImg} alt="Tires" className=" absolute invisible -mr-4 lg:visible bottom-44 z-5 left-0 lg:w-40  xl:w-64 h-auto " /> */}
             <div className="flex justify-center items-center pt-6 pb-2 ">
