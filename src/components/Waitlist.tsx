@@ -14,7 +14,7 @@ export const Waitlist: React.FC = () => {
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState(''); 
   const [isLoading, setIsLoading] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(true);
   const [phoneNumber, setPhoneNumber] = useState('');
   const dispatch = useAppDispatch();
 
@@ -109,13 +109,17 @@ export const Waitlist: React.FC = () => {
   
             <img src={WinderLogo} className="w-[100px] h-auto mx-auto" />
 
-            <h1 className='text-center text-2xl font-semibold mt-8'>We got your contact</h1>
+            <h1 className='text-center text-2xl font-semibold mt-8'>Dating App just for the Gryphons</h1>
+            <h1 className='text-center text-lg text-gray-700 font-semibold mt-4'>Launch party tomorrow at Palace, get your tickets before they sell out!</h1>
+
 
             <div className="items-center justify-center flex flex-col gap-4 mt-10">
-              <button onClick={()=>{handleLinkClick("https://apps.apple.com/us/app/college-mixer/id1671245143")}} className="bg-[#E1306C] rounded-lg p-3 text-white font-semibold transition-all duration-200 hover:bg-pink-600 hover:scale-95">Pre-download the app</button>
+              <button onClick={()=>{handleLinkClick("https://www.bouncelife.com//events/65a32371a83a4aa425897c1c?t=65a58ca1f93216436308914b")}} className="bg-[#E1306C] rounded-lg p-3 text-white font-semibold transition-all duration-200 hover:bg-blue-900 hover:scale-95">Get Launch Party Tickets </button>
+
               <h1>OR</h1>
-              <button onClick={()=>{handleLinkClick("https://www.bouncelife.com//events/65a32371a83a4aa425897c1c?t=65a58ca1f93216436308914b")}} className="bg-slate-700 rounded-lg p-3 text-white font-semibold transition-all duration-200 hover:bg-blue-900 hover:scale-95">Get Launch Party Tickets </button>
-              <span className="text-xs text-gray-700">(Launch party is Jan 19 at Palace)</span>
+              <button onClick={()=>{handleLinkClick("https://apps.apple.com/us/app/college-mixer/id1671245143")}} className="bg-slate-700 rounded-lg p-3 text-white font-semibold transition-all duration-200 hover:bg-pink-600 hover:scale-95">Pre-download the app</button>
+
+              <span className="text-xs text-center text-gray-700">Balcony launch party Friday Jan 19 at Palace, $10 (same price as cover with added perks), guaranteed entry until 10:30pm</span>
             </div>
             
             {/* <img src={TiresImg} alt="Tires" className=" absolute invisible -mr-4 lg:visible bottom-44 z-5 left-0 lg:w-40  xl:w-64 h-auto " /> */}
