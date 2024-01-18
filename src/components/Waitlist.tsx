@@ -151,6 +151,9 @@ export const Waitlist: React.FC = () => {
 
           <img src={WinderLogo} className="w-[100px] h-auto mx-auto" />
 
+          <h1 className="text-3xl font-semibold text-center text-gray-900 my-6">We're launching January 19</h1>
+          <h1 className="text-xl font-semibold text-center text-gray-600 my-6">Pre-register for the app everyone's talking about 👇</h1>
+
           <form className="w-full max-w-lg mx-auto" onSubmit={handleSubmit}>
             <div className="flex flex-wrap">
               <div className="flex w-full flex-wrap mb-4">
