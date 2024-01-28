@@ -16,6 +16,10 @@ export const subscribeToWaitlist = (phoneNumber: string, firstName: string) => A
 
 // Analytics for internal dashboard
 export const getUserCount = () => API.get(`/api/users/count`);
+export const getUserActions = () => API.get('/api/userActionsLast14Days');
+export const getUserMessages = () => API.get('/api/userMessagesLast14Days');
+export const getUsersCreated = () => API.get('/api/usersCreatedLast14Days');
+
 
 // Push notification marketing
 export const sendNotificationToAllUsers = (subject: string, message: string, launchCode: string) => API.post(`/api/sendNotificationToAllUsers`, { subject: subject, message: message, launchCode: launchCode });
