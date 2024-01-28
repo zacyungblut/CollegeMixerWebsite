@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import WinderLogo from "../assets/WinderLogo.gif";
+import CollegeMixerLoadingLogo from "../assets/MixerBlack.gif";
 import { useAppDispatch } from "../hooks/hooks";
 import { getUserCount } from "../actions/analytics";
 import { sendNotificationToAllUsers } from "../actions/notificationMarketing";
@@ -56,7 +56,7 @@ const Dashboard = () => {
     return (
 
         <div className="items-center justify-center p-2">
-            <img src={WinderLogo} className="w-[100px] h-[100px] mx-auto my-2" />
+            <img src={CollegeMixerLoadingLogo} onClick={()=>{}} className="w-[100px] h-[100px] mx-auto my-2" />
             {/* <h1 className="text-center my-4 font-extrabold text-5xl">Winder Admin Dashboard</h1> */}
 
             <div className="p-4 bg-gradient-to-r from-sky-600 to-sky-700   rounded-lg">

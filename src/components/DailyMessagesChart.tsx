@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import WinderLogo from "../assets/WinderLogo.gif";
+import CollegeMixerLoadingLogo from "../assets/MixerBlack.gif";
 import { useAppDispatch } from "../hooks/hooks";
 import { getUserMessages } from "../actions/analytics";
 import { Line } from 'react-chartjs-2';
@@ -34,7 +34,7 @@ const DailyMessagesChart = () => {
     }, [dispatch]);
 
     if (isLoading) {
-        return <img src={WinderLogo} alt="Loading..." />;
+        return <img src={CollegeMixerLoadingLogo} alt="Loading..." />;
     }
 
     if (error || !messageData) {

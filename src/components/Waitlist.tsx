@@ -7,7 +7,8 @@ import { CircularProgress } from '@mui/material';
 import { useAppSelector, useAppDispatch } from '../hooks/hooks';
 import { toast } from 'react-toastify';
 import { subscribeToWaitlist } from '../actions/emailMarketing';
-import WinderLogo from "../assets/GuelphMixer.png";
+import GuelphMixerLogo from "../assets/GuelphMixer.png";
+import CollegeMixerLogo from "../assets/CollegeMixer.png";
 import Confetti from 'react-confetti';
 
 export const Waitlist: React.FC = () => {
@@ -105,26 +106,22 @@ export const Waitlist: React.FC = () => {
             {/* https://apps.apple.com/us/app/college-mixer/id1671245143 */}
   
           <div className="container max-w-4xl my-20 mx-auto px-4 py-8 mb-12 shadow-lg bg-[#f8f8f8] rounded-2xl">
-            {/* <div className="text-2xl md:text-4xl pt-2 text-center text-white font-semibold my-2 mb-5">Guelph Mixer</div> */}
   
-            <img src={WinderLogo} className="w-[100px] h-auto mx-auto" />
+            <img src={CollegeMixerLogo} className="w-[100px] h-auto mx-auto" />
 
-            <h1 className='text-center text-2xl font-semibold mt-8'>Dating App just for the Gryphons</h1>
-            <h1 className='text-center text-lg text-gray-700 font-semibold mt-4'>Launch party tomorrow at Palace, get your tickets before they sell out!</h1>
+            <h1 className='text-center text-2xl font-semibold mt-8'>The Dating App exclusively for your university</h1>
+            <h1 className='text-center text-sm mb-8 text-gray-700 font-semibold mt-2'>Sign up with your student email to get access</h1>
 
 
-            <div className="items-center justify-center flex flex-col gap-4 mt-10">
-              <button onClick={()=>{handleLinkClick("https://www.bouncelife.com//events/65a32371a83a4aa425897c1c?t=65a58ca1f93216436308914b")}} className="bg-[#E1306C] rounded-lg p-3 text-white font-semibold transition-all duration-200 hover:bg-blue-900 hover:scale-95">Get Launch Party Tickets </button>
+            <div className="items-center justify-center flex flex-col gap-4 mt-16 mb-4">
 
-              <h1>OR</h1>
               <button onClick={()=>{handleLinkClick("https://apps.apple.com/us/app/college-mixer/id1671245143")}} className="bg-slate-700 rounded-lg p-3 text-white font-semibold transition-all duration-200 hover:bg-pink-600 hover:scale-95">Pre-download the app</button>
 
-              <span className="text-xs text-center text-gray-700">Balcony launch party Friday Jan 19 at Palace, $10 (same price as cover with added perks), guaranteed entry until 10:30pm</span>
+              <span className="text-xs text-center text-gray-700 mt-4">College Mixer is not assosciated with Western University or Guelph University</span>
             </div>
             
             {/* <img src={TiresImg} alt="Tires" className=" absolute invisible -mr-4 lg:visible bottom-44 z-5 left-0 lg:w-40  xl:w-64 h-auto " /> */}
             <div className="flex justify-center items-center pt-6 pb-2 ">
-              {/* <span className="mr-3 text-sm text-gray-700 ">Guelph Mixer is not affiliated with Western University</span> */}
             </div>
             <div className="flex justify-center items-center pt-2 pb-2 ">
               {/* <span className="mr-3 text-sm text-gray-700 ">We'll send you updates periodically with reminders and more information</span> */}
@@ -151,7 +148,6 @@ export const Waitlist: React.FC = () => {
 
 
         <div className="container max-w-4xl my-20 mx-auto px-4 py-8 mb-12 shadow-lg bg-[#f8f8f8] rounded-2xl">
-          {/* <div className="text-2xl md:text-4xl pt-2 text-center text-white font-semibold my-2 mb-5">Guelph Mixer</div> */}
 
           <img src={WinderLogo} className="w-[100px] h-auto mx-auto" />
 
