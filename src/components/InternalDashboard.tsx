@@ -3,8 +3,9 @@ import WinderLogo from "../assets/WinderLogo.gif";
 import { useAppDispatch } from "../hooks/hooks";
 import { getUserCount } from "../actions/analytics";
 import { sendNotificationToAllUsers } from "../actions/notificationMarketing";
-
-
+import DailyLikesChart from './DailyLikesChart'; 
+import DailyMessagesChart from './DailyMessagesChart';
+import  NewUserChart from './NewUserChart';
 
 
 const Dashboard = () => {
@@ -17,18 +18,18 @@ const Dashboard = () => {
     const [maleCount, setMaleCount] = useState<number | null>();
     const [femaleCount, setFemaleCount] = useState<number | null>();
     const [otherGenderCount, setOtherGenderCount] = useState<number | null>();
-
-
+    
+   
     const dispatch = useAppDispatch();
 
     const onLoad = async () => {
         const userCountResp = await dispatch(getUserCount());
+       
         setUserCount(userCountResp.totalUsers);
         setIncompleteCount(userCountResp.incompleteProfiles);
         setMaleCount(userCountResp.maleUsers);
         setFemaleCount(userCountResp.femaleUsers);
         setOtherGenderCount(userCountResp.nonBinaryOrNonStraightUserss);
-
 
     }
 
@@ -94,6 +95,25 @@ const Dashboard = () => {
                     <h3 className="text-5xl font-semibold">0</h3>
                 </div>
             </div>
+            <div className="grid grid-cols-3 gap-4">
+            
+            <div className="p-4 bg-white rounded-lg shadow">
+                <h2 className="text-xl font-semibold text-gray-800 mb-2"><DailyLikesChart /></h2>
+                
+            </div>
+
+            
+            <div className="p-4 bg-white rounded-lg shadow">
+                <h2 className="text-xl font-semibold text-gray-800 mb-2">< DailyMessagesChart /></h2>
+              
+            </div>
+
+            
+            <div className="p-4 bg-white rounded-lg shadow">
+                <h2 className="text-xl font-semibold text-gray-800 mb-2"> < NewUserChart /></h2>
+                
+            </div>
+</div>
 
         </div>
 
