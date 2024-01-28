@@ -149,7 +149,7 @@ export const Waitlist: React.FC = () => {
 
         <div className="container max-w-4xl my-20 mx-auto px-4 py-8 mb-12 shadow-lg bg-[#f8f8f8] rounded-2xl">
 
-          <img src={WinderLogo} className="w-[100px] h-auto mx-auto" />
+          <img src={CollegeMixerLogo} className="w-[100px] h-auto mx-auto" />
 
           <h1 className="text-3xl font-semibold text-center text-gray-900 my-6">We're launching January 19</h1>
           <h1 className="text-xl font-semibold text-center text-gray-600 my-6">Pre-register for the app everyone's talking about 👇</h1>
