@@ -5,6 +5,7 @@ import Waitlist from './components/Waitlist';
 import Privacy from './components/Privacy';
 import Support from './components/Support';
 import Dashboard from './components/InternalDashboard';
+import ReferFriend from './components/ReferFriend';
 
 
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/policy" element={<><Privacy /></>} />
         <Route path="/support" element={<><Privacy /></>} />
         <Route path="/admin" element={<><Dashboard /></>} />
+        <Route path="/refer-friend" element={<><Dashboard /></>} />
       </Routes>
     </>
   )
