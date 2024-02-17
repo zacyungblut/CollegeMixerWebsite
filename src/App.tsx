@@ -21,7 +21,7 @@ function App() {
         <Route path="/policy" element={<><Privacy /></>} />
         <Route path="/support" element={<><Privacy /></>} />
         <Route path="/admin" element={<><Dashboard /></>} />
-        <Route path="/refer-friend" element={<><Dashboard /></>} />
+        <Route path="/refer-friend" element={<><ReferFriend /></>} />
       </Routes>
     </>
   )
