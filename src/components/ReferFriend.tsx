@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from '../assets/content.svg';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import CancelIcon from '@mui/icons-material/CancelOutlined';
@@ -11,7 +11,7 @@ import GuelphMixerLogo from "../assets/GuelphMixer.png";
 import CollegeMixerLogo from "../assets/CollegeMixer.png";
 import Confetti from 'react-confetti';
 
-export const Waitlist: React.FC = () => {
+export const ReferFriend: React.FC = () => {
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState(''); 
   const [isLoading, setIsLoading] = useState(false);
@@ -71,6 +71,28 @@ export const Waitlist: React.FC = () => {
     );
 
   };
+
+  useEffect(() => {
+    // Function to attempt opening the app and fallback to the App Store
+    const attemptOpenAppWithFallback = () => {
+      const appUrl = 'https://collegemixer.us/refer-friend'; // Your app's custom scheme URL
+      const appStoreUrl = 'https://apps.apple.com/us/app/college-mixer/id1671245143'; // Your app's App Store URL
+
+      // Attempt to open the app using the Universal Link
+      
+      // window.location.href = appUrl;
+
+      // Wait for 2 seconds to check if the app is opened
+      setTimeout(() => {
+        // This code runs after 2 seconds. If the app isn't opened, redirect to the App Store.
+        // Note: This relies on the assumption that the user is still on the browser if the app isn't opened.
+        window.location.href = appStoreUrl;
+      }, 2000);
+    };
+
+    // Automatically attempt to open the app when the component mounts
+    attemptOpenAppWithFallback();
+  }, []);
 
 
   const Keypad = ({ onKeyPress }: any) => {
@@ -199,4 +221,4 @@ export const Waitlist: React.FC = () => {
   );
 };
 
-export default Waitlist;
+export default ReferFriend;
