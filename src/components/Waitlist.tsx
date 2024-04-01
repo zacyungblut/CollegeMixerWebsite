@@ -115,7 +115,7 @@ export const Waitlist: React.FC = () => {
 
             <div className="items-center justify-center flex flex-col gap-4 mt-16 mb-4">
 
-              <button onClick={()=>{handleLinkClick("https://apps.apple.com/us/app/college-mixer/id1671245143")}} className="bg-slate-700 rounded-lg p-3 text-white font-semibold transition-all duration-200 hover:bg-pink-600 hover:scale-95">Pre-download the app</button>
+              <button onClick={()=>{handleLinkClick("https://apps.apple.com/us/app/college-mixer/id1671245143")}} className="bg-slate-700 rounded-lg p-3 text-white font-semibold transition-all duration-200 hover:bg-pink-600 hover:scale-95">Get the app</button>
 
               <span className="text-xs text-center text-gray-700 mt-4">College Mixer is not assosciated with Western University or Guelph University</span>
             </div>
