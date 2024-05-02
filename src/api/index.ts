@@ -23,7 +23,7 @@ export const getUsersCreated = () => API.get('/api/usersCreatedLast14Days');
 //casting
 export const createFilmShoot = (shootInfo: any, launchCode: string) => API.post('/api/casting/create', { shootInfo: shootInfo, launchCode: launchCode });
 export const getFilmShoots = () => API.get('/api/casting/');
-export const applyToFilmShoot = (userInfo: any, filmShootID: any) => API.post('/api/casting/apply/', { userInfo: userInfo, filmShootID: filmShootID });
+export const applyToFilmShoot = (userInfo: any, filmShootID: any) => API.post('/api/casting/apply/', { userInfo: userInfo, filmShootIDs: filmShootID });
 
 
 
