@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-import { Route, Routes, useLocation, Link } from "react-router-dom"
+import { Route, Routes, useLocation, Navigate } from "react-router-dom"
 import Waitlist from './components/Waitlist';
 import Privacy from './components/Privacy';
 import Support from './components/Support';
@@ -8,6 +8,7 @@ import InternalDashboard from './components/InternalDashboard';
 import ReferFriend from './components/ReferFriend';
 import Casting from './components/Casting';
 import Omnidash from './components/Omnidash';
+import SecretLogin from './components/SecretLogin';
 import styled from 'styled-components';
 
 const FullHeightContainer = styled.div`
@@ -17,13 +18,43 @@ const FullHeightContainer = styled.div`
 `;
 
 function App() {
-  const { pathname } = useLocation();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const checkAuth = () => {
+      const token = localStorage.getItem('omnidashAuth');
+      console.log('Checking auth, token:', token);
+      setIsAuthenticated(token === 'authenticated');
+    };
+
+    checkAuth();
+    window.addEventListener('storage', checkAuth);
+
+    return () => {
+      window.removeEventListener('storage', checkAuth);
+    };
+  }, []);
+
+  const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+    console.log('ProtectedRoute - isAuthenticated:', isAuthenticated);
+    if (!isAuthenticated) {
+      console.log('Redirecting to login');
+      return <Navigate to="/login" replace />;
+    }
+    console.log('Rendering protected content');
+    return <>{children}</>;
+  };
 
   return (
     <FullHeightContainer>
       <Routes>
         <Route path="/" element={<Waitlist />} />
-        <Route path="/dashboard" element={<Omnidash />} />
+        <Route path="/login" element={<SecretLogin setIsAuthenticated={setIsAuthenticated} />} />
+        <Route path="/dashboard" element={
+          <ProtectedRoute>
+            <Omnidash />
+          </ProtectedRoute>
+        } />
         <Route path="/policy" element={<Privacy />} />
         <Route path="/support" element={<Support />} />
         <Route path="/admin" element={<InternalDashboard />} />

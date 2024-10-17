@@ -55,3 +55,13 @@ export const fetchLiveUserActivity = async () => {
     throw error;
   }
 };
+
+export const fetchUserActivity = async (userId: string) => {
+  try {
+    const { data } = await API.get(`/api/website/user-activity/${userId}`);
+    return data;
+  } catch (error) {
+    console.error('Error fetching user activity:', error);
+    throw error;
+  }
+};

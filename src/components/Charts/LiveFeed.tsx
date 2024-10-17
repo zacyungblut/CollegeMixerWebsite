@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { fetchLiveUserActivity } from '../../api';
+import { formatDistanceToNow } from 'date-fns';
 
 interface UserActivity {
   userId: string;
   action: 'login' | 'rating';
   timestamp: string;
+  name: string;
+  age: number;
 }
 
 const FeedContainer = styled.div`
@@ -15,7 +17,7 @@ const FeedContainer = styled.div`
   padding: 10px;
   border: 1px solid #00ff00;
   height: 400px;
-  width: 100%;
+  width: 48%;
   overflow-y: auto;
 `;
 
@@ -27,65 +29,29 @@ const FeedTitle = styled.h3`
 
 const FeedEntry = styled.div`
   margin-bottom: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: #001100;
+  }
 `;
 
-const LoadingBar = styled.div`
-  width: 100%;
-  height: 20px;
-  background-color: #001100;
-  margin-top: 10px;
-`;
+interface LiveFeedProps {
+  activities: UserActivity[];
+  onUserSelect: (userId: string) => void;
+}
 
-const LoadingProgress = styled.div<{ width: number }>`
-  width: ${props => props.width}%;
-  height: 100%;
-  background-color: #00ff00;
-  transition: width 1s linear;
-`;
-
-const LiveFeed: React.FC = () => {
-  const [activities, setActivities] = useState<UserActivity[]>([]);
-  const [countdown, setCountdown] = useState(30);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchLiveUserActivity();
-      setActivities(data);
-    };
-
-    fetchData();
-    const interval = setInterval(() => {
-      setCountdown(prev => (prev > 0 ? prev - 1 : 30));
-      if (countdown === 0) {
-        fetchData();
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [countdown]);
-
-  const renderLoadingBar = () => {
-    const progress = ((30 - countdown) / 30) * 100;
-    return (
-      <LoadingBar>
-        <LoadingProgress width={progress} />
-      </LoadingBar>
-    );
-  };
-
+const LiveFeed: React.FC<LiveFeedProps> = ({ activities, onUserSelect }) => {
   return (
     <FeedContainer>
       <FeedTitle>Live User Activity Feed</FeedTitle>
       {activities.map((activity, index) => (
-        <FeedEntry key={index}>
-          [{activity.timestamp}] User {activity.userId.substr(0, 8)}... {activity.action === 'login' ? 'logged in' : 'rated'}
+        <FeedEntry key={index} onClick={() => onUserSelect(activity.userId)}>
+          [{formatDistanceToNow(new Date(activity.timestamp), { addSuffix: true })}] 
+          {activity.name} ({activity.age}) {activity.action === 'login' ? 'logged in' : 'rated'}
         </FeedEntry>
       ))}
-      {renderLoadingBar()}
-      <div>Next update in {countdown} seconds</div>
     </FeedContainer>
   );
 };
 
 export default LiveFeed;
-
