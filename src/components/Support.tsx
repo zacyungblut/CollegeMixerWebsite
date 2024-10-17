@@ -7,7 +7,7 @@ import { CircularProgress } from '@mui/material';
 import { useAppSelector, useAppDispatch } from '../hooks/hooks';
 import { toast } from 'react-toastify';
 import { subscribeToWaitlist } from '../actions/emailMarketing';
-import WinderLogo from "../../assets/Winder.png";
+import WinderLogo from '../assets/Winder.png';
 
 
 export const Waitlist: React.FC = () => {

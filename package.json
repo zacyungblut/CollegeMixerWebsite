@@ -48,7 +48,8 @@
     "recharts": "^2.6.2",
     "slate": "^0.94.1",
     "slate-history": "^0.93.0",
-    "slate-react": "^0.95.0"
+    "slate-react": "^0.95.0",
+    "styled-components": "^6.1.13"
   },
   "devDependencies": {
     "@types/chart.js": "^2.9.41",
