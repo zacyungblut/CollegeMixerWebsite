@@ -1,7 +1,14 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://ec2-3-144-254-116.us-east-2.compute.amazonaws.com' });
+// const API = axios.create({ baseURL: 'http://ec2-3-144-254-116.us-east-2.compute.amazonaws.com' });
 // const API = axios.create({ baseURL: 'http://localhost:3000' }); // local test
+const API = axios.create(
+  { baseURL: 'http://ec2-3-144-254-116.us-east-2.compute.amazonaws.com',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }
+);
  
 API.interceptors.request.use((req: any) => {
   if (localStorage.getItem('profile')) {
