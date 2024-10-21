@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { fetchOmnidashMetrics, sendOmnidashNotification, fetchLiveUserActivity } from '../api';
+import Chart from './Charts/Chart';
 import BarChart from './Charts/BarCharts';
 import LiveFeed from './Charts/LiveFeed';
 import UserActivityFeed from './Charts/UserActivityFeed';
@@ -106,11 +107,16 @@ const Omnidash: React.FC = () => {
   const [metrics, setMetrics] = useState<any>({});
   const [school, setSchool] = useState<string>('');
   const [notification, setNotification] = useState<string>('');
+  const [loginData, setLoginData] = useState<{ date: string; value: number }[]>([]);
+  const [feedsCreatedData, setFeedsCreatedData] = useState<{ date: string; value: number }[]>([]);
+  const [feedsCompletedData, setFeedsCompletedData] = useState<{ date: string; value: number }[]>([]);
+  const [avgFeedIndexData, setAvgFeedIndexData] = useState<{ date: string; value: number }[]>([]);
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
   const [latestUserId, setLatestUserId] = useState<string | null>(null);
   const [countdown, setCountdown] = useState(30);
   const [liveActivities, setLiveActivities] = useState<any[]>([]);
   const [activeRelationships, setActiveRelationships] = useState<number>(0);
+  const [loginsByHour, setLoginsByHour] = useState<{ hour: string; count: number }[]>([]);
   const [actionsByHour, setActionsByHour] = useState<{ hour: string; count: number }[]>([]);
   const [signupsByDay, setSignupsByDay] = useState<{ date: string; count: number }[]>([]);
 
@@ -138,12 +144,40 @@ const Omnidash: React.FC = () => {
       setMetrics(data);
       setActiveRelationships(data.activeRelationships || 0);
       
+      // Set actionsByHour data
       if (data.actionsByHour) {
         setActionsByHour(data.actionsByHour);
       }
       
+      // Set signupsByDay data
       if (data.signupsByDay) {
         setSignupsByDay(data.signupsByDay);
+      }
+      
+      // Prepare data for charts
+      if (data.loginsByDay) {
+        setLoginData(data.loginsByDay.map((login: any) => ({
+          date: login.date,
+          value: login.count
+        })));
+      }
+      if (data.feedsCreatedByDay) {
+        setFeedsCreatedData(data.feedsCreatedByDay.map((feed: any) => ({
+          date: feed.date,
+          value: feed.count
+        })));
+      }
+      if (data.feedsCompletedByDay) {
+        setFeedsCompletedData(data.feedsCompletedByDay.map((feed: any) => ({
+          date: feed.date,
+          value: feed.count
+        })));
+      }
+      if (data.avgFeedIndexByDay) {
+        setAvgFeedIndexData(data.avgFeedIndexByDay.map((feed: any) => ({
+          date: feed.date,
+          value: feed.avgIndex
+        })));
       }
     } catch (error) {
       console.error('Error fetching metrics:', error);
@@ -220,6 +254,8 @@ const Omnidash: React.FC = () => {
         data={signupsByDay}
         title="User Signups (Last 7 Days)"
       />
+
+      {/* ... (rest of the component remains the same) */}
 
       <GlobalUpdateBar countdown={countdown} onRefresh={handleRefresh} />
     </Terminal>
