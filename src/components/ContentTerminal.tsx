@@ -333,8 +333,8 @@ const MessagesContainer = styled.div`
   min-height: 0;
 `;
 
-const MessageGroup = styled.div<{ sent?: boolean }>`
-  align-self: ${props => props.sent ? 'flex-end' : 'flex-start'};
+const MessageGroup = styled.div`
+  align-self: flex-start;
   max-width: 70%;
   display: flex;
   flex-direction: column;
@@ -348,30 +348,22 @@ const MessageSender = styled.div`
   margin-bottom: 0.25rem;
 `;
 
-const Message = styled.div<{ sent?: boolean; color?: string }>`
-  background-color: ${props => props.sent ? 
-    props.color ? `${props.color}15` : '#1C3F1C' : // Add 15 for 15% opacity
-    '#1A2332'};
-  border: 1px solid ${props => props.sent ? 
-    props.color || '#39FF14' : 
-    '#39FF14'};
+const Message = styled.div<{ color?: string }>`
+  background-color: ${props => props.color ? `${props.color}15` : '#1C3F1C'};
+  border: 1px solid ${props => props.color || '#39FF14'};
   border-radius: 6px;
   padding: 1rem;
   position: relative;
-  color: ${props => props.sent ? 
-    props.color || '#39FF14' : 
-    '#39FF14'};
+  color: ${props => props.color || '#39FF14'};
 
   &::before {
     content: '';
     position: absolute;
     top: 0;
-    ${props => props.sent ? 'right: 0;' : 'left: 0;'}
+    left: 0;
     width: 2px;
     height: 100%;
-    background-color: ${props => props.sent ? 
-      props.color || '#39FF14' : 
-      '#39FF14'};
+    background-color: ${props => props.color || '#39FF14'};
   }
 `;
 
@@ -1401,9 +1393,9 @@ const ContentTerminal = () => {
   );
 
   // Update the character list to show photos
-  const renderCharacterList = () => {
-    const [characterSearchQuery, setCharacterSearchQuery] = useState('');
+  const [characterSearchQuery, setCharacterSearchQuery] = useState('');
 
+  const renderCharacterList = () => {
     const filteredCharacters = characters.filter(char =>
       char.name.toLowerCase().includes(characterSearchQuery.toLowerCase()) ||
       char.details.toLowerCase().includes(characterSearchQuery.toLowerCase())
@@ -1565,15 +1557,11 @@ const ContentTerminal = () => {
     <MessagesContainer>
       {messages.map(message => {
         const sender = selectedConversation?.participants.find(p => p.id === message.sender);
-        const isCurrentUser = message.sender === selectedSender;
 
         return (
-          <MessageGroup key={message.id} sent={isCurrentUser}>
+          <MessageGroup key={message.id}>
             <MessageSender>{sender?.name}</MessageSender>
-            <Message 
-              sent={isCurrentUser}
-              color={sender?.sendColor}
-            >
+            <Message color={sender?.sendColor}>
               {message.text}
               {message.audio && (
                 <>
