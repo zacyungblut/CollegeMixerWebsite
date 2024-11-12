@@ -374,34 +374,6 @@ const Message = styled.div<{ color?: string }>`
   }
 `;
 
-const AudioVisualizer = styled.div`
-  height: 40px;
-  margin-top: 0.75rem;
-  border: 1px solid #39FF14;
-  border-radius: 4px;
-  overflow: hidden;
-  position: relative;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-      90deg,
-      #39FF14 0%,
-      #2EBF0F 20%,
-      #39FF14 40%,
-      #2EBF0F 60%,
-      #39FF14 80%,
-      #2EBF0F 100%
-    );
-    opacity: 0.3;
-  }
-`;
-
 const AudioControls = styled.div`
   display: flex;
   align-items: center;
@@ -1582,7 +1554,6 @@ const ContentTerminal = () => {
               {message.text}
               {message.audio && (
                 <>
-                  <AudioVisualizer />
                   <AudioControls>
                     <AudioButton onClick={() => {
                       const audio = new Audio(message.audio);
