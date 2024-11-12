@@ -247,7 +247,7 @@ const Omnidash: React.FC = () => {
 
       <BarChart
         data={actionsByHour}
-        title="Actions Today (Last 12 Hours)"
+        title="Actions Today (Last 24 Hours)"
       />
 
       <BarChart

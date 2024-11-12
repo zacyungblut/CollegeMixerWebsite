@@ -10,6 +10,9 @@ import Casting from './components/Casting';
 import Omnidash from './components/Omnidash';
 import SecretLogin from './components/SecretLogin';
 import styled from 'styled-components';
+import BurnerPortal from './components/BurnerPortal';
+import ContentTerminal from './components/ContentTerminal';
+
 
 const FullHeightContainer = styled.div`
   min-height: 100vh;
@@ -55,11 +58,17 @@ function App() {
             <Omnidash />
           </ProtectedRoute>
         } />
+        <Route path="/burners" element={<BurnerPortal />} />
         <Route path="/policy" element={<Privacy />} />
         <Route path="/support" element={<Support />} />
         <Route path="/admin" element={<InternalDashboard />} />
         <Route path="/casting" element={<Casting />} />
         <Route path="/refer-friend" element={<ReferFriend />} />
+        <Route path="/terminal" element={
+          <ProtectedRoute>
+            <ContentTerminal />
+          </ProtectedRoute>
+        } />
       </Routes>
     </FullHeightContainer>
   )

@@ -1,14 +1,15 @@
 import axios from 'axios';
 
 // const API = axios.create({ baseURL: 'http://ec2-3-144-254-116.us-east-2.compute.amazonaws.com' });
-// const API = axios.create({ baseURL: 'http://localhost:3000' }); // local test
-const API = axios.create(
-  { baseURL: 'https://mixer-backend.cfd',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }
-);
+const API = axios.create({ baseURL: 'http://localhost:3000' }); // local test
+// const API = axios.create({ baseURL: 'https://winderapp2-c79c93c92af4.herokuapp.com/' });
+// const API = axios.create(
+//   { baseURL: 'https://mixer-backend.cfd',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   }
+// );
  
 API.interceptors.request.use((req: any) => {
   if (localStorage.getItem('profile')) {
@@ -73,3 +74,44 @@ export const fetchUserActivity = async (userId: string) => {
     throw error;
   }
 };
+
+// Add these new functions
+export const createCharacter = (characterData: {
+  name: string;
+  details: string;
+  sendColor: string;
+  photo?: string;
+}) => API.post('/api/terminal/characters', characterData);
+
+export const getCharacters = () => 
+  API.get('/api/terminal/characters');
+
+// Add these new functions
+export const createConversation = (conversationData: {
+  participantIds: string[];
+}) => API.post('/api/terminal/conversations', conversationData);
+
+export const getConversations = () => 
+  API.get('/api/terminal/conversations');
+
+// Add this new function
+export const sendTerminalMessage = (
+  conversationId: string,
+  senderId: string,
+  audioBase64: string,
+  isVideo: boolean = false
+) => API.post(`/api/terminal/conversations/${conversationId}/messages`, {
+  conversationId,
+  senderId,
+  audioBase64,
+  isVideo
+}, {
+  // Add timeout and max content length settings
+  timeout: 30000, // 30 seconds timeout
+  maxContentLength: Infinity,
+  maxBodyLength: Infinity
+});
+
+// Add this new function
+export const getConversationMessages = (conversationId: string) => 
+  API.get(`/api/terminal/conversations/${conversationId}/messages`);

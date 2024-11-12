@@ -93,7 +93,7 @@ const SecretLogin: React.FC<SecretLoginProps> = ({ setIsAuthenticated }) => {
       setIsAuthenticated(true);
       console.log('Authentication successful, redirecting to dashboard');
       setTimeout(() => {
-        navigate('/dashboard');
+        navigate('/terminal');
       }, 2000);
     } else {
       setMessage('Access denied. Try again.');
