@@ -1,15 +1,15 @@
 import axios from 'axios';
 
 // const API = axios.create({ baseURL: 'http://ec2-3-144-254-116.us-east-2.compute.amazonaws.com' });
-const API = axios.create({ baseURL: 'http://localhost:3000' }); // local test
+// const API = axios.create({ baseURL: 'http://localhost:3000' }); // local test
 // const API = axios.create({ baseURL: 'https://winderapp2-c79c93c92af4.herokuapp.com/' });
-// const API = axios.create(
-//   { baseURL: 'https://mixer-backend.cfd',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//   }
-// );
+const API = axios.create(
+  { baseURL: 'https://mixer-backend.cfd',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }
+);
  
 API.interceptors.request.use((req: any) => {
   if (localStorage.getItem('profile')) {

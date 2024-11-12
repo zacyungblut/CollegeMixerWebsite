@@ -93,6 +93,12 @@ const SecretLogin: React.FC<SecretLoginProps> = ({ setIsAuthenticated }) => {
       setIsAuthenticated(true);
       console.log('Authentication successful, redirecting to dashboard');
       setTimeout(() => {
+        navigate('/dashboard');
+      }, 2000);
+    } else if (code.toLowerCase() === 'titan') {
+      setMessage('Access granted. Redirecting...');
+      localStorage.setItem('omnidashAuth', 'authenticated');
+      setTimeout(() => {
         navigate('/terminal');
       }, 2000);
     } else {
