@@ -1042,6 +1042,13 @@ const ParticipantBadge = styled.div`
   white-space: nowrap;
 `;
 
+// Add this new styled component near the other styled components
+const CharacterSearchInput = styled(SearchInput)`
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  padding: 0.75rem;
+`;
+
 const ContentTerminal = () => {
   const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -1394,28 +1401,44 @@ const ContentTerminal = () => {
   );
 
   // Update the character list to show photos
-  const renderCharacterList = () => (
-    <CharacterList>
-      {characters.map(character => (
-        <Character 
-          key={character.id}
-          selected={false}
-        >
-          <CharacterAvatar photoUrl={character.photoUrl}>
-            {!character.photoUrl && character.initials}
-          </CharacterAvatar>
-          <CharacterInfo>
-            <CharacterName>{character.name}</CharacterName>
-            <CharacterDetails>{character.details}</CharacterDetails>
-          </CharacterInfo>
-        </Character>
-      ))}
-      <AddButton onClick={() => setShowAddCharacterModal(true)}>
-        <HiPlus size={20} />
-        Add New Character
-      </AddButton>
-    </CharacterList>
-  );
+  const renderCharacterList = () => {
+    const [characterSearchQuery, setCharacterSearchQuery] = useState('');
+
+    const filteredCharacters = characters.filter(char =>
+      char.name.toLowerCase().includes(characterSearchQuery.toLowerCase()) ||
+      char.details.toLowerCase().includes(characterSearchQuery.toLowerCase())
+    );
+
+    return (
+      <CharacterList>
+        <CharacterSearchInput
+          placeholder="Search characters..."
+          value={characterSearchQuery}
+          onChange={(e) => setCharacterSearchQuery(e.target.value)}
+        />
+        
+        <AddButton onClick={() => setShowAddCharacterModal(true)} style={{ marginBottom: '1rem' }}>
+          <HiPlus size={20} />
+          Add New Character
+        </AddButton>
+
+        {filteredCharacters.map(character => (
+          <Character 
+            key={character.id}
+            selected={false}
+          >
+            <CharacterAvatar photoUrl={character.photoUrl}>
+              {!character.photoUrl && character.initials}
+            </CharacterAvatar>
+            <CharacterInfo>
+              <CharacterName>{character.name}</CharacterName>
+              <CharacterDetails>{character.details}</CharacterDetails>
+            </CharacterInfo>
+          </Character>
+        ))}
+      </CharacterList>
+    );
+  };
 
   // Move these states to the top level
   const [isDragging, setIsDragging] = useState(false);
