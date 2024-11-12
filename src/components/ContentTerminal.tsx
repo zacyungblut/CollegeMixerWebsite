@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import { 
   HiPlus, 
   HiMicrophone, 
@@ -45,6 +45,13 @@ const shimmer = keyframes`
   40% { color: #f5821f; }
   60% { color: #e03a3e; }
   80% { color: #963d97; }
+`;
+
+// Add this with your other animations
+const loadingPulse = keyframes`
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
 `;
 
 // Container and Global Styles
@@ -1041,6 +1048,10 @@ const CharacterSearchInput = styled(SearchInput)`
   padding: 0.75rem;
 `;
 
+const LoadingText = styled.span`
+  animation: ${loadingPulse} 1.5s ease-in-out infinite;
+`;
+
 const ContentTerminal = () => {
   const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -1504,12 +1515,15 @@ const ContentTerminal = () => {
   }, [selectedConversation]);
 
   // Update handleSendMessage to add new messages in the right order
+  const [isSending, setIsSending] = useState(false);
+
   const handleSendMessage = async () => {
-    if (!selectedConversation || !selectedSender || !selectedAudio) {
+    if (!selectedConversation || !selectedSender || !selectedAudio || isSending) {
       return;
     }
 
     try {
+      setIsSending(true);
       const reader = new FileReader();
       reader.onloadend = async () => {
         try {
@@ -1532,23 +1546,26 @@ const ContentTerminal = () => {
           );
 
           if (response.data.success) {
-            setMessages(prev => [...prev, response.data.message]); // Add to end instead of beginning
+            setMessages(prev => [...prev, response.data.message]);
             setSelectedAudio(null);
           }
         } catch (error: any) {
           console.error('Error sending message:', error);
           console.error('Error response:', error.response?.data);
-          // Add user feedback here if needed
+        } finally {
+          setIsSending(false);
         }
       };
 
       reader.onerror = (error) => {
         console.error('Error reading file:', error);
+        setIsSending(false);
       };
 
       reader.readAsDataURL(selectedAudio);
     } catch (error) {
       console.error('Error in handleSendMessage:', error);
+      setIsSending(false);
     }
   };
 
@@ -1635,11 +1652,20 @@ const ContentTerminal = () => {
       <InputControls>
         <ActionButton 
           onClick={handleSendMessage}
-          disabled={!selectedAudio || !selectedSender}
-          style={{ opacity: selectedAudio && selectedSender ? 1 : 0.5 }}
+          disabled={!selectedAudio || !selectedSender || isSending}
+          style={{ 
+            opacity: selectedAudio && selectedSender && !isSending ? 1 : 0.5,
+            width: '100%'
+          }}
         >
-          <HiPaperAirplane size={20} />
-          Send Message
+          {isSending ? (
+            <LoadingText>Sending...</LoadingText>
+          ) : (
+            <>
+              <HiPaperAirplane size={20} />
+              Send Message
+            </>
+          )}
         </ActionButton>
       </InputControls>
     </InputSection>
@@ -1735,14 +1761,20 @@ const ContentTerminal = () => {
 
               <ActionButton 
                 onClick={handleSendMessage}
-                disabled={!selectedAudio || !selectedSender}
+                disabled={!selectedAudio || !selectedSender || isSending}
                 style={{ 
-                  opacity: selectedAudio && selectedSender ? 1 : 0.5,
+                  opacity: selectedAudio && selectedSender && !isSending ? 1 : 0.5,
                   width: '100%'
                 }}
               >
-                <HiPaperAirplane size={20} />
-                Send Message
+                {isSending ? (
+                  <LoadingText>Sending...</LoadingText>
+                ) : (
+                  <>
+                    <HiPaperAirplane size={20} />
+                    Send Message
+                  </>
+                )}
               </ActionButton>
             </div>
           </InputPanel>
