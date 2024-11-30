@@ -8,7 +8,7 @@ import { useAppSelector, useAppDispatch } from '../hooks/hooks';
 import { toast } from 'react-toastify';
 import { subscribeToWaitlist } from '../actions/emailMarketing';
 import GuelphMixerLogo from "../assets/GuelphMixer.png";
-import CollegeMixerLogo from "../assets/CollegeMixer.png";
+import MixerLogo from "../assets/MixerLogo.png";
 import Confetti from 'react-confetti';
 
 export const ReferFriend: React.FC = () => {
@@ -128,9 +128,9 @@ export const ReferFriend: React.FC = () => {
   
           <div className="container max-w-4xl my-20 mx-auto px-4 py-8 mb-12 shadow-lg bg-[#f8f8f8] rounded-2xl">
   
-            <img src={CollegeMixerLogo} className="w-[100px] h-auto mx-auto" />
+            <img src={MixerLogo} className="w-[100px] rounded-md h-auto mx-auto" />
 
-            <h1 className='text-center text-2xl font-semibold mt-8'>Redirecting you to College Mixer</h1>
+            <h1 className='text-center text-2xl font-semibold mt-8'>Redirecting you to Mixer Dating</h1>
             {/* <h1 className='text-center text-sm mb-8 text-gray-700 font-semibold mt-2'>Sign up with your student email to get access</h1> */}
 
 
@@ -169,7 +169,7 @@ export const ReferFriend: React.FC = () => {
 
         <div className="container max-w-4xl my-20 mx-auto px-4 py-8 mb-12 shadow-lg bg-[#f8f8f8] rounded-2xl">
 
-          <img src={CollegeMixerLogo} className="w-[100px] h-auto mx-auto" />
+          <img src={MixerLogo} className="w-[100px] rounded-md h-auto mx-auto" />
 
           <h1 className="text-3xl font-semibold text-center text-gray-900 my-6">We're launching January 19</h1>
           <h1 className="text-xl font-semibold text-center text-gray-600 my-6">Pre-register for the app everyone's talking about 👇</h1>
