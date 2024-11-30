@@ -8,7 +8,7 @@ import { useAppSelector, useAppDispatch } from '../hooks/hooks';
 import { toast } from 'react-toastify';
 import { subscribeToWaitlist } from '../actions/emailMarketing';
 import GuelphMixerLogo from "../assets/GuelphMixer.png";
-import CollegeMixerLogo from "../assets/CollegeMixer.png";
+import MixerLogo from "../assets/MixerLogo.png";
 import Confetti from 'react-confetti';
 
 export const Waitlist: React.FC = () => {
@@ -95,7 +95,7 @@ export const Waitlist: React.FC = () => {
   if (isSubmitted===true) {
     return (
       <>
-        <Confetti />
+        <Confetti colors={['#ddefc3', '#c2e2ec', '#f4bec7', '#fbeab9']} />
         <div className="flex flex-col min-h-screen font-sans -mt-10 bg-gradient-to-b shadow from-white to-gray-50 relative">
           <main className="container mx-auto px-4 flex-grow">
             <div className="w-3/4 mx-auto">
@@ -107,17 +107,17 @@ export const Waitlist: React.FC = () => {
   
           <div className="container max-w-4xl my-20 mx-auto px-4 py-8 mb-12 shadow-lg bg-[#f8f8f8] rounded-2xl">
   
-            <img src={CollegeMixerLogo} className="w-[100px] h-auto mx-auto" />
+            <img src={MixerLogo} className="w-[200px] rounded-md h-auto mx-auto" />
 
-            <h1 className='text-center text-2xl font-semibold mt-8'>The Dating App exclusively for your university</h1>
-            <h1 className='text-center text-sm mb-8 text-gray-700 font-semibold mt-2'>Sign up with your student email to get access</h1>
+            <h1 className='text-center text-2xl font-semibold mt-8'>Dating's Better Together</h1>
+            {/* <h1 className='text-center text-sm mb-8 text-gray-700 font-semibold mt-2'>Sign up with your student email to get access</h1> */}
 
 
             <div className="items-center justify-center flex flex-col gap-4 mt-16 mb-4">
 
               <button onClick={()=>{handleLinkClick("https://apps.apple.com/us/app/college-mixer/id1671245143")}} className="bg-slate-700 rounded-lg p-3 text-white font-semibold transition-all duration-200 hover:bg-pink-600 hover:scale-95">Get the app</button>
 
-              <span className="text-xs text-center text-gray-700 mt-4">College Mixer is not assosciated with Western University or Guelph University</span>
+              <span className="text-xs text-center text-gray-700 mt-4">Mixer is not assosciated with any university or college</span>
             </div>
             
             {/* <img src={TiresImg} alt="Tires" className=" absolute invisible -mr-4 lg:visible bottom-44 z-5 left-0 lg:w-40  xl:w-64 h-auto " /> */}
@@ -149,7 +149,7 @@ export const Waitlist: React.FC = () => {
 
         <div className="container max-w-4xl my-20 mx-auto px-4 py-8 mb-12 shadow-lg bg-[#f8f8f8] rounded-2xl">
 
-          <img src={CollegeMixerLogo} className="w-[100px] h-auto mx-auto" />
+          <img src={MixerLogo} className="w-[100px] rounded-md h-auto mx-auto" />
 
           <h1 className="text-3xl font-semibold text-center text-gray-900 my-6">We're launching January 19</h1>
           <h1 className="text-xl font-semibold text-center text-gray-600 my-6">Pre-register for the app everyone's talking about 👇</h1>
