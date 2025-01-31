@@ -1,18 +1,17 @@
-import { useState, useEffect } from 'react'
-import './App.css'
-import { Route, Routes, useLocation, Navigate } from "react-router-dom"
-import Waitlist from './components/Waitlist';
-import Privacy from './components/Privacy';
-import Support from './components/Support';
-import InternalDashboard from './components/InternalDashboard';
-import ReferFriend from './components/ReferFriend';
-import Casting from './components/Casting';
-import Omnidash from './components/Omnidash';
-import SecretLogin from './components/SecretLogin';
-import styled from 'styled-components';
-import BurnerPortal from './components/BurnerPortal';
-import ContentTerminal from './components/ContentTerminal';
-
+import { useState, useEffect } from "react";
+import "./App.css";
+import { Route, Routes, useLocation, Navigate } from "react-router-dom";
+import Waitlist from "./components/Waitlist";
+import Privacy from "./components/Privacy";
+import Support from "./components/Support";
+import InternalDashboard from "./components/InternalDashboard";
+import ReferFriend from "./components/ReferFriend";
+import Casting from "./components/Casting";
+import Omnidash from "./components/Omnidash";
+import SecretLogin from "./components/SecretLogin";
+import styled from "styled-components";
+import BurnerPortal from "./components/BurnerPortal";
+import ContentTerminal from "./components/ContentTerminal";
 
 const FullHeightContainer = styled.div`
   min-height: 100vh;
@@ -25,26 +24,26 @@ function App() {
 
   useEffect(() => {
     const checkAuth = () => {
-      const token = localStorage.getItem('omnidashAuth');
-      console.log('Checking auth, token:', token);
-      setIsAuthenticated(token === 'authenticated');
+      const token = localStorage.getItem("omnidashAuth");
+      console.log("Checking auth, token:", token);
+      setIsAuthenticated(token === "authenticated");
     };
 
     checkAuth();
-    window.addEventListener('storage', checkAuth);
+    window.addEventListener("storage", checkAuth);
 
     return () => {
-      window.removeEventListener('storage', checkAuth);
+      window.removeEventListener("storage", checkAuth);
     };
   }, []);
 
   const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-    console.log('ProtectedRoute - isAuthenticated:', isAuthenticated);
+    console.log("ProtectedRoute - isAuthenticated:", isAuthenticated);
     if (!isAuthenticated) {
-      console.log('Redirecting to login');
+      console.log("Redirecting to login");
       return <Navigate to="/login" replace />;
     }
-    console.log('Rendering protected content');
+    console.log("Rendering protected content");
     return <>{children}</>;
   };
 
@@ -52,26 +51,35 @@ function App() {
     <FullHeightContainer>
       <Routes>
         <Route path="/" element={<Waitlist />} />
-        <Route path="/login" element={<SecretLogin setIsAuthenticated={setIsAuthenticated} />} />
-        <Route path="/dashboard" element={
-          <ProtectedRoute>
-            <Omnidash />
-          </ProtectedRoute>
-        } />
+        <Route
+          path="/login"
+          element={<SecretLogin setIsAuthenticated={setIsAuthenticated} />}
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Omnidash />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/burners" element={<BurnerPortal />} />
         <Route path="/policy" element={<Privacy />} />
         <Route path="/support" element={<Support />} />
         <Route path="/admin" element={<InternalDashboard />} />
         <Route path="/casting" element={<Casting />} />
-        <Route path="/refer-friend" element={<ReferFriend />} />
-        <Route path="/terminal" element={
-          <ProtectedRoute>
-            <ContentTerminal />
-          </ProtectedRoute>
-        } />
+        <Route path="/AddFriend" element={<ReferFriend />} />
+        <Route
+          path="/terminal"
+          element={
+            <ProtectedRoute>
+              <ContentTerminal />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </FullHeightContainer>
-  )
+  );
 }
 
-export default App
+export default App;

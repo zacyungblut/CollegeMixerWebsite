@@ -4,7 +4,9 @@
     "details": [
       {
         "appID": "TDGHT3RTRR.com.dragochar.Winder",
-        "paths": ["/refer-friend*"]
+        "paths": [
+          "/AddFriend*"
+        ]
       }
     ]
   }
