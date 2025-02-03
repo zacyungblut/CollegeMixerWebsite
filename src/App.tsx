@@ -7,7 +7,7 @@ import Support from "./components/Support";
 import InternalDashboard from "./components/InternalDashboard";
 import ReferFriend from "./components/ReferFriend";
 import Casting from "./components/Casting";
-import Omnidash from "./components/Omnidash";
+import Dashboard from "./components/Dashboard";
 import SecretLogin from "./components/SecretLogin";
 import styled from "styled-components";
 import BurnerPortal from "./components/BurnerPortal";
@@ -51,18 +51,7 @@ function App() {
     <FullHeightContainer>
       <Routes>
         <Route path="/" element={<Waitlist />} />
-        <Route
-          path="/login"
-          element={<SecretLogin setIsAuthenticated={setIsAuthenticated} />}
-        />
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Omnidash />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/burners" element={<BurnerPortal />} />
         <Route path="/policy" element={<Privacy />} />
         <Route path="/support" element={<Support />} />

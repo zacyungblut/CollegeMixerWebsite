@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import styled, { keyframes } from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import styled, { keyframes } from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const fadeIn = keyframes`
   from { opacity: 0; }
@@ -10,7 +10,7 @@ const fadeIn = keyframes`
 const Container = styled.div`
   background-color: #000;
   color: #00ff00;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -37,7 +37,7 @@ const Input = styled.input`
   background-color: #000;
   border: 2px solid #00ff00;
   color: #00ff00;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   font-size: 1.5rem;
   padding: 0.5rem;
   margin-bottom: 1rem;
@@ -54,7 +54,7 @@ const Button = styled.button`
   border: 2px solid #00ff00;
   color: #00ff00;
   cursor: pointer;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   font-size: 1.2rem;
   padding: 0.5rem 1rem;
   transition: all 0.3s ease;
@@ -67,7 +67,7 @@ const Button = styled.button`
 const Message = styled.p<{ visible: boolean }>`
   font-size: 1.2rem;
   margin-top: 1rem;
-  opacity: ${props => props.visible ? 1 : 0};
+  opacity: ${(props) => (props.visible ? 1 : 0)};
   transition: opacity 0.5s ease;
 `;
 
@@ -76,41 +76,41 @@ interface SecretLoginProps {
 }
 
 const SecretLogin: React.FC<SecretLoginProps> = ({ setIsAuthenticated }) => {
-  const [code, setCode] = useState('');
-  const [message, setMessage] = useState('');
+  const [code, setCode] = useState("");
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    const timer = setTimeout(() => setMessage(''), 3000);
+    const timer = setTimeout(() => setMessage(""), 3000);
     return () => clearTimeout(timer);
   }, [message]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (code.toLowerCase() === 'kronos') {
-      setMessage('Access granted. Redirecting...');
-      localStorage.setItem('omnidashAuth', 'authenticated');
+    if (code.toLowerCase() === "kronos") {
+      setMessage("Access granted. Redirecting...");
+      localStorage.setItem("omnidashAuth", "authenticated");
       setIsAuthenticated(true);
-      console.log('Authentication successful, redirecting to dashboard');
+      console.log("Authentication successful, redirecting to dashboard");
       setTimeout(() => {
-        navigate('/dashboard');
+        navigate("/dashboard");
       }, 2000);
-    } else if (code.toLowerCase() === 'titan') {
-      setMessage('Access granted. Redirecting...');
-      localStorage.setItem('omnidashAuth', 'authenticated');
+    } else if (code.toLowerCase() === "titan") {
+      setMessage("Access granted. Redirecting...");
+      localStorage.setItem("omnidashAuth", "authenticated");
       setTimeout(() => {
-        navigate('/terminal');
+        navigate("/dashboard");
       }, 2000);
     } else {
-      setMessage('Access denied. Try again.');
-      setCode('');
+      setMessage("Access denied. Try again.");
+      setCode("");
     }
   };
 
   return (
     <Container>
       <Title>
-{`
+        {`
  __  __ _____  ________ _____    ____  __  __ _   _ _____ _____       _____ _    _ 
 |  \\/  |_ _\\ \\/ / ___|  _ \\  / __ \\|  \\/  | \\ | |_   _|  __ \\ /\\   / ____| |  | |
 | |\\/| || | \\  /|  _| | |_) || |  | | \\  / |  \\| | | | | |  | /  \\ | (___ | |__| |

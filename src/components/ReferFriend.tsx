@@ -73,7 +73,7 @@ export const ReferFriend: React.FC = () => {
     const attemptOpenAppWithFallback = () => {
       const appUrl = "https://mixer.dating/AddFriend"; // Your app's custom scheme URL
       const appStoreUrl =
-        "https://apps.apple.com/us/app/college-mixer/id1671245143"; // Your app's App Store URL
+        "https://apps.apple.com/ca/app/mixer-dating/id1671245143"; // Your app's App Store URL
 
       // Attempt to open the app using the Universal Link
 
@@ -134,7 +134,7 @@ export const ReferFriend: React.FC = () => {
             <div className="w-3/4 mx-auto"></div>
             {/* <img className="w-40 h-auto" src={WinderLogo} /> */}
 
-            {/* https://apps.apple.com/us/app/college-mixer/id1671245143 */}
+            {/* https://apps.apple.com/ca/app/mixer-dating/id1671245143 */}
 
             <div className="container max-w-4xl my-20 mx-auto px-4 py-8 mb-12 shadow-lg bg-[#f8f8f8] rounded-2xl">
               <img
@@ -151,7 +151,7 @@ export const ReferFriend: React.FC = () => {
                 <button
                   onClick={() => {
                     handleLinkClick(
-                      "https://apps.apple.com/us/app/college-mixer/id1671245143"
+                      "https://apps.apple.com/ca/app/mixer-dating/id1671245143"
                     );
                   }}
                   className="bg-slate-700 rounded-lg p-3 text-white font-semibold transition-all duration-200 hover:bg-pink-600 hover:scale-95">
