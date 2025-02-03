@@ -6,12 +6,14 @@ import axios from "axios";
 // const API = axios.create({ baseURL: 'http://192.168.10.107:3000' });  // Kingston
 // export const baseURL ='http://192.168.10.107:3000'; // Kingston
 
-const API = axios.create({
-  baseURL: "http://localhost:3000",
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+const API = axios.create({ baseURL: "https://mixer-backend.cfd" });
+
+// const API = axios.create({
+//   baseURL: "http://localhost:3000",
+//   headers: {
+//     "Content-Type": "application/json",
+//   },
+// });
 
 API.interceptors.request.use((req: any) => {
   if (localStorage.getItem("profile")) {

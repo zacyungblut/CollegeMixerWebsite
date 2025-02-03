@@ -173,6 +173,12 @@ const StepMetrics = styled.div`
   font-size: 12px;
 `;
 
+interface Step {
+  name: string;
+  count: number;
+  percentage: number;
+}
+
 const Dashboard = () => {
   const [stats, setStats] = useState<any>(null);
   const [startDate, setStartDate] = useState(
@@ -221,7 +227,7 @@ const Dashboard = () => {
 
       <FunnelContainer>
         <Title>User Onboarding Funnel</Title>
-        {stats.summary.steps.map((step, index) => (
+        {stats.summary.steps.map((step: Step, index: number) => (
           <div key={step.name}>
             <StepLabel>
               <span>{step.name}</span>
