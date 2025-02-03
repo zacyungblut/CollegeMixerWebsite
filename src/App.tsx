@@ -58,6 +58,7 @@ function App() {
         <Route path="/admin" element={<InternalDashboard />} />
         <Route path="/casting" element={<Casting />} />
         <Route path="/AddFriend" element={<ReferFriend />} />
+        <Route path="/App-Store" element={<ReferFriend />} />
         <Route
           path="/terminal"
           element={
