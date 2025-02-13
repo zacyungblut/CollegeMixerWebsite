@@ -287,14 +287,14 @@ const Dashboard = () => {
           <StatValue>{stats.summary.totalUsers}</StatValue>
           <StatLabel>Total Users</StatLabel>
         </StatCard>
-        <StatCard>
+        {/* <StatCard>
           <StatValue>{stats.summary.usersWithPhone}</StatValue>
           <StatLabel>Users with Phone</StatLabel>
         </StatCard>
         <StatCard>
           <StatValue>{stats.summary.phoneVerificationRate}%</StatValue>
           <StatLabel>Phone Verification Rate</StatLabel>
-        </StatCard>
+        </StatCard> */}
       </StatsContainer>
 
       {/* <ChartContainer>
