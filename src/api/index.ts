@@ -7,9 +7,9 @@ import axios from "axios";
 // export const baseURL ='http://192.168.10.107:3000'; // Kingston
 // export const baseURL = "http://10.0.0.143:3000"; // 450 Front st west, toronto
 
-const API = axios.create({ baseURL: "http://10.0.0.143:3000" });
+// const API = axios.create({ baseURL: "http://10.0.0.143:3000" });
 
-// const API = axios.create({ baseURL: "https://mixer-backend.cfd" });
+const API = axios.create({ baseURL: "https://mixer-backend.cfd" });
 // const API = axios.create({
 //   baseURL: "http://localhost:3000",
 //   headers: {
