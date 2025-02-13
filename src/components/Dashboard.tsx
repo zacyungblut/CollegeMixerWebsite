@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getUserPhoneStats } from "../api";
+import { getUserPhoneStats, getUserLocations } from "../api";
 import {
   LineChart,
   Line,
@@ -15,6 +15,17 @@ import {
 } from "recharts";
 import styled from "styled-components";
 import MixerLogo from "../assets/Mixer-Logo.png";
+import {
+  MapContainer as LeafletMapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+} from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
 
 const DashboardContainer = styled.div`
   padding: 32px;
@@ -179,8 +190,32 @@ interface Step {
   percentage: number;
 }
 
+// Fix for default marker icons in react-leaflet
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: markerIcon2x,
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
+});
+
+// Update your styled MapContainer
+const MapContainer = styled.div`
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 32px;
+
+  .leaflet-container {
+    height: 400px;
+    width: 100%;
+    border-radius: 8px;
+  }
+`;
+
 const Dashboard = () => {
   const [stats, setStats] = useState<any>(null);
+  const [locations, setLocations] = useState<any[]>([]);
   const [startDate, setStartDate] = useState(
     new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]
   );
@@ -191,8 +226,14 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const { data } = await getUserPhoneStats(startDate, endDate);
-        setStats(data);
+        const [{ data: statsData }, { data: locationsData }] =
+          await Promise.all([
+            getUserPhoneStats(startDate, endDate),
+            getUserLocations(startDate, endDate),
+          ]);
+        setStats(statsData);
+        setLocations(locationsData);
+        console.log("Locations data:", locationsData);
       } catch (error) {
         console.error("Error fetching stats:", error);
       }
@@ -256,7 +297,7 @@ const Dashboard = () => {
         </StatCard>
       </StatsContainer>
 
-      <ChartContainer>
+      {/* <ChartContainer>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             data={stats.dailyStats}
@@ -305,7 +346,25 @@ const Dashboard = () => {
             />
           </LineChart>
         </ResponsiveContainer>
-      </ChartContainer>
+      </ChartContainer> */}
+
+      <MapContainer>
+        <Title>User Locations ({locations.length} users)</Title>
+        <LeafletMapContainer
+          center={[39.8283, -98.5795]} // Center of USA
+          zoom={4}
+          scrollWheelZoom={false}>
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {locations.map((location, index) => (
+            <Marker key={index} position={[location.lat, location.lng]}>
+              <Popup>User Location</Popup>
+            </Marker>
+          ))}
+        </LeafletMapContainer>
+      </MapContainer>
     </DashboardContainer>
   );
 };

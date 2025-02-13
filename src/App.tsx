@@ -52,6 +52,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Waitlist />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/d" element={<Dashboard />} />
         <Route path="/burners" element={<BurnerPortal />} />
         <Route path="/policy" element={<Privacy />} />
         <Route path="/support" element={<Support />} />

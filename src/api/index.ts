@@ -5,9 +5,11 @@ import axios from "axios";
 // const API = axios.create({ baseURL: 'https://winderapp2-c79c93c92af4.herokuapp.com/' });
 // const API = axios.create({ baseURL: 'http://192.168.10.107:3000' });  // Kingston
 // export const baseURL ='http://192.168.10.107:3000'; // Kingston
+// export const baseURL = "http://10.0.0.143:3000"; // 450 Front st west, toronto
 
-const API = axios.create({ baseURL: "https://mixer-backend.cfd" });
+const API = axios.create({ baseURL: "http://10.0.0.143:3000" });
 
+// const API = axios.create({ baseURL: "https://mixer-backend.cfd" });
 // const API = axios.create({
 //   baseURL: "http://localhost:3000",
 //   headers: {
@@ -147,5 +149,10 @@ export const getConversationMessages = (conversationId: string) =>
 
 export const getUserPhoneStats = (startDate?: string, endDate?: string) =>
   API.get("/api/website/user-phone-stats", {
+    params: { startDate, endDate },
+  });
+
+export const getUserLocations = (startDate?: string, endDate?: string) =>
+  API.get("/api/website/user-locations", {
     params: { startDate, endDate },
   });
