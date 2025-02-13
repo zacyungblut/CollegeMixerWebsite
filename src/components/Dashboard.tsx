@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getUserPhoneStats, getUserLocations } from "../api";
+import { getUserPhoneStats, getUserLocations, getGenderStats } from "../api";
 import {
   LineChart,
   Line,
@@ -213,6 +213,42 @@ const MapContainer = styled.div`
   }
 `;
 
+// Add this new styled component
+const GenderBreakdownContainer = styled.div`
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 32px;
+`;
+
+const GenderStats = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 16px;
+`;
+
+const GenderStat = styled.div<{ color: string }>`
+  padding: 16px;
+  border-radius: 8px;
+  background: ${(props) => `${props.color}10`};
+  border: 1px solid ${(props) => `${props.color}30`};
+
+  h3 {
+    color: ${(props) => props.color};
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: #64748b;
+    font-size: 14px;
+    margin: 0;
+  }
+`;
+
 const Dashboard = () => {
   const [stats, setStats] = useState<any>(null);
   const [locations, setLocations] = useState<any[]>([]);
@@ -222,18 +258,23 @@ const Dashboard = () => {
   const [endDate, setEndDate] = useState(
     new Date().toISOString().split("T")[0]
   );
+  const [genderStats, setGenderStats] = useState<any>(null);
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const [{ data: statsData }, { data: locationsData }] =
-          await Promise.all([
-            getUserPhoneStats(startDate, endDate),
-            getUserLocations(startDate, endDate),
-          ]);
+        const [
+          { data: statsData },
+          { data: locationsData },
+          { data: genderData },
+        ] = await Promise.all([
+          getUserPhoneStats(startDate, endDate),
+          getUserLocations(startDate, endDate),
+          getGenderStats(startDate, endDate),
+        ]);
         setStats(statsData);
         setLocations(locationsData);
-        console.log("Locations data:", locationsData);
+        setGenderStats(genderData);
       } catch (error) {
         console.error("Error fetching stats:", error);
       }
@@ -296,6 +337,20 @@ const Dashboard = () => {
           <StatLabel>Phone Verification Rate</StatLabel>
         </StatCard> */}
       </StatsContainer>
+
+      <GenderBreakdownContainer>
+        <Title>Gender Distribution</Title>
+        <GenderStats>
+          <GenderStat color="#2196f3">
+            <h3>{genderStats?.male.toLocaleString()}</h3>
+            <p>Male Users ({genderStats?.malePercentage.toFixed(1)}%)</p>
+          </GenderStat>
+          <GenderStat color="#e91e63">
+            <h3>{genderStats?.female.toLocaleString()}</h3>
+            <p>Female Users ({genderStats?.femalePercentage.toFixed(1)}%)</p>
+          </GenderStat>
+        </GenderStats>
+      </GenderBreakdownContainer>
 
       {/* <ChartContainer>
         <ResponsiveContainer width="100%" height="100%">

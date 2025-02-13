@@ -156,3 +156,8 @@ export const getUserLocations = (startDate?: string, endDate?: string) =>
   API.get("/api/website/user-locations", {
     params: { startDate, endDate },
   });
+
+export const getGenderStats = (startDate?: string, endDate?: string) =>
+  API.get("/api/website/gender-stats", {
+    params: { startDate, endDate },
+  });
