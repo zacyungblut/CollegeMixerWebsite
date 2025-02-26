@@ -110,7 +110,6 @@ export const Waitlist: React.FC = () => {
         <div className="flex flex-col min-h-screen font-sans -mt-10 bg-gradient-to-b shadow from-white to-gray-50 relative">
           <main className="container mx-auto px-4 flex-grow">
             <div className="w-3/4 mx-auto"></div>
-            {/* <img className="w-40 h-auto" src={WinderLogo} /> */}
 
             {/* https://apps.apple.com/ca/app/mixer-dating/id1671245143 */}
 
@@ -158,7 +157,6 @@ export const Waitlist: React.FC = () => {
       <div className="flex flex-col min-h-screen font-sans -mt-10 bg-gradient-to-b shadow from-white to-gray-50 relative">
         <main className="container mx-auto px-4 flex-grow">
           <div className="w-3/4 mx-auto"></div>
-          {/* <img className="w-40 h-auto" src={WinderLogo} /> */}
 
           <div className="container max-w-4xl my-20 mx-auto px-4 py-8 mb-12 shadow-lg bg-[#f8f8f8] rounded-2xl">
             <img
