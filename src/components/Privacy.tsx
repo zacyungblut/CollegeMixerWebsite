@@ -84,29 +84,32 @@ export const Waitlist: React.FC = () => {
               </h2>
               <h3 className="text-xl font-medium mb-2">2.1. Personal Data</h3>
               <p>
-                When you register with Mixer, we may ask you to provide certain
-                personal information including:
+                We collect and process the following types of personal
+                information:
               </p>
               <ul className="list-disc ml-6 mt-2">
                 <li>Name</li>
-                <li>Age</li>
-                <li>Gender</li>
+                <li>Age and Birthday</li>
+                <li>Gender and Gender Preferences</li>
                 <li>School Email Address</li>
-                <li>Location</li>
+                <li>Phone Number</li>
                 <li>Profile Pictures</li>
                 <li>Bio/Description</li>
               </ul>
 
               <h3 className="text-xl font-medium mt-4 mb-2">2.2. Usage Data</h3>
               <p>
-                We may also collect information on how the app is accessed and
-                used. This may include:
+                We automatically collect certain information about your device
+                and how you interact with Mixer:
               </p>
               <ul className="list-disc ml-6 mt-2">
-                <li>Your IP address</li>
-                <li>Device information</li>
-                <li>Browser type and version</li>
-                <li>Usage statistics</li>
+                <li>Device information (type, model, operating system)</li>
+                <li>IP address</li>
+                <li>App usage statistics</li>
+                <li>Chat interactions (timestamps, frequency)</li>
+                <li>Feature usage patterns</li>
+                <li>App performance data</li>
+                <li>Notification interactions</li>
               </ul>
             </section>
 
@@ -114,34 +117,121 @@ export const Waitlist: React.FC = () => {
               <h2 className="text-2xl font-semibold mb-4">
                 3. How We Use Your Information
               </h2>
-              <p>We use the information we collect:</p>
+              <p>We use your information for the following purposes:</p>
               <ul className="list-disc ml-6 mt-2">
-                <li>To provide and maintain our service</li>
-                <li>To notify you about changes to our app</li>
-                <li>To allow you to participate in interactive features</li>
-                <li>To provide customer support</li>
-                <li>For analysis and improvement of the app</li>
+                <li>Creating and managing your account</li>
+                <li>Providing matching services</li>
+                <li>Enabling communication between users</li>
+                <li>Sending important notifications</li>
+                <li>Improving our services through analytics</li>
+                <li>Ensuring platform safety and security</li>
+                <li>Preventing fraud and misuse</li>
+                <li>Complying with legal obligations</li>
               </ul>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-4">4. Security</h2>
+              <h2 className="text-2xl font-semibold mb-4">
+                4. Analytics and Tracking
+              </h2>
               <p>
-                We take precautions to protect your information. When you submit
-                sensitive information via the app, your information is protected
-                both online and offline.
+                We use analytics services (including PostHog) to understand how
+                users interact with our app. This helps us improve our services
+                and user experience. We track:
+              </p>
+              <ul className="list-disc ml-6 mt-2">
+                <li>Feature usage and interactions</li>
+                <li>User preferences and settings changes</li>
+                <li>App performance metrics</li>
+                <li>User engagement patterns</li>
+                <li>Message interaction statistics</li>
+                <li>Group creation and interaction data</li>
+                <li>Notification response rates</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4">
+                5. Data Storage and Security
+              </h2>
+              <p>
+                We implement appropriate technical and organizational measures
+                to protect your personal information. Your data is stored
+                securely and we regularly review our security practices.
+              </p>
+              <p className="mt-2">
+                While we use commercially reasonable measures to protect your
+                data, no method of transmission or storage is 100% secure.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold mb-4">
-                5. Contact Information
+                6. Your Rights and Choices
+              </h2>
+              <p>You have the right to:</p>
+              <ul className="list-disc ml-6 mt-2">
+                <li>Access your personal data</li>
+                <li>Correct inaccurate data</li>
+                <li>Request deletion of your data</li>
+                <li>Opt-out of certain data collection</li>
+                <li>Hide your profile from other users</li>
+                <li>Control your notification preferences</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4">7. Data Retention</h2>
+              <p>
+                We retain your personal information for as long as necessary to
+                provide our services and fulfill the purposes outlined in this
+                policy. You can request deletion of your account and associated
+                data at any time through the app settings.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4">
+                8. Updates to This Policy
               </h2>
               <p>
-                For questions or comments about this privacy policy and our
-                privacy practices, contact us at:
+                We may update this privacy policy from time to time. We will
+                notify you of any significant changes through the app or via
+                email.
               </p>
-              <p className="mt-2 font-medium">support@mixerapp.com</p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4">
+                9. Contact Information
+              </h2>
+              <p>
+                If you have questions about this privacy policy or our privacy
+                practices, please contact us at:
+              </p>
+              <p className="mt-2 font-medium">hey@collegemixer.us</p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4">
+                10. California Privacy Rights
+              </h2>
+              <p>
+                If you are a California resident, you have additional rights
+                under the California Consumer Privacy Act (CCPA), including the
+                right to:
+              </p>
+              <ul className="list-disc ml-6 mt-2">
+                <li>Know what personal data is being collected</li>
+                <li>Know whether your personal data is sold or disclosed</li>
+                <li>Say no to the sale of personal data</li>
+                <li>Access your personal data</li>
+                <li>Request deletion of your personal data</li>
+                <li>
+                  Not be discriminated against for exercising your privacy
+                  rights
+                </li>
+              </ul>
             </section>
           </div>
         </div>
