@@ -71,10 +71,10 @@ export const Waitlist: React.FC = () => {
             <section>
               <h2 className="text-2xl font-semibold mb-4">1. Introduction</h2>
               <p>
-                Welcome to Mixer, the dating app that connects students from
-                around the world. We respect the privacy of our users and are
-                committed to protecting it through our compliance with this
-                policy.
+                Welcome to Mixer, the dating app that connects friend groups and
+                helps people meet through mutual connections. We respect the
+                privacy of our users and are committed to protecting it through
+                our compliance with this policy.
               </p>
             </section>
 
@@ -91,10 +91,11 @@ export const Waitlist: React.FC = () => {
                 <li>Name</li>
                 <li>Age and Birthday</li>
                 <li>Gender and Gender Preferences</li>
-                <li>School Email Address</li>
+                <li>Email Address</li>
                 <li>Phone Number</li>
                 <li>Profile Pictures</li>
                 <li>Bio/Description</li>
+                <li>Friend connections and group affiliations</li>
               </ul>
 
               <h3 className="text-xl font-medium mt-4 mb-2">2.2. Usage Data</h3>
@@ -120,7 +121,10 @@ export const Waitlist: React.FC = () => {
               <p>We use your information for the following purposes:</p>
               <ul className="list-disc ml-6 mt-2">
                 <li>Creating and managing your account</li>
-                <li>Providing matching services</li>
+                <li>
+                  Providing matching services between individuals and friend
+                  groups
+                </li>
                 <li>Enabling communication between users</li>
                 <li>Sending important notifications</li>
                 <li>Improving our services through analytics</li>
@@ -132,7 +136,36 @@ export const Waitlist: React.FC = () => {
 
             <section>
               <h2 className="text-2xl font-semibold mb-4">
-                4. Analytics and Tracking
+                4. SMS and Text Message Communications
+              </h2>
+              <p>
+                Mixer uses SMS and text messages for various purposes,
+                including:
+              </p>
+              <ul className="list-disc ml-6 mt-2">
+                <li>Account verification and authentication</li>
+                <li>Security alerts and notifications</li>
+                <li>Important updates about your account or matches</li>
+                <li>Information about new features or services</li>
+                <li>Promotional messages (with your consent)</li>
+              </ul>
+              <p className="mt-3">
+                By providing your phone number and using our service, you
+                consent to receive text messages from Mixer. Message and data
+                rates may apply. The frequency of messages varies based on your
+                activity and preferences.
+              </p>
+              <p className="mt-3">
+                You can opt out of receiving SMS messages at any time by texting
+                "STOP" in response to any message you receive from us. You can
+                also contact our support team to manage your messaging
+                preferences.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4">
+                5. Analytics and Tracking
               </h2>
               <p>
                 We use analytics services (including PostHog) to understand how
@@ -152,7 +185,7 @@ export const Waitlist: React.FC = () => {
 
             <section>
               <h2 className="text-2xl font-semibold mb-4">
-                5. Data Storage and Security
+                6. Data Storage and Security
               </h2>
               <p>
                 We implement appropriate technical and organizational measures
@@ -167,7 +200,7 @@ export const Waitlist: React.FC = () => {
 
             <section>
               <h2 className="text-2xl font-semibold mb-4">
-                6. Your Rights and Choices
+                7. Your Rights and Choices
               </h2>
               <p>You have the right to:</p>
               <ul className="list-disc ml-6 mt-2">
@@ -177,11 +210,12 @@ export const Waitlist: React.FC = () => {
                 <li>Opt-out of certain data collection</li>
                 <li>Hide your profile from other users</li>
                 <li>Control your notification preferences</li>
+                <li>Opt out of SMS messages by texting "STOP"</li>
               </ul>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-4">7. Data Retention</h2>
+              <h2 className="text-2xl font-semibold mb-4">8. Data Retention</h2>
               <p>
                 We retain your personal information for as long as necessary to
                 provide our services and fulfill the purposes outlined in this
@@ -192,7 +226,7 @@ export const Waitlist: React.FC = () => {
 
             <section>
               <h2 className="text-2xl font-semibold mb-4">
-                8. Updates to This Policy
+                9. Updates to This Policy
               </h2>
               <p>
                 We may update this privacy policy from time to time. We will
@@ -203,18 +237,18 @@ export const Waitlist: React.FC = () => {
 
             <section>
               <h2 className="text-2xl font-semibold mb-4">
-                9. Contact Information
+                10. Contact Information
               </h2>
               <p>
                 If you have questions about this privacy policy or our privacy
                 practices, please contact us at:
               </p>
-              <p className="mt-2 font-medium">hey@collegemixer.us</p>
+              <p className="mt-2 font-medium">hey@mixer.dating</p>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold mb-4">
-                10. California Privacy Rights
+                11. California Privacy Rights
               </h2>
               <p>
                 If you are a California resident, you have additional rights
