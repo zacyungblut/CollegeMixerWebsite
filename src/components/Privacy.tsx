@@ -67,6 +67,12 @@ export const Waitlist: React.FC = () => {
 
         <div className="container max-w-4xl my-20 mx-auto px-8 py-8 mb-12 rounded-2xl bg-white shadow-lg">
           <h1 className="text-4xl font-bold mb-8">Privacy Policy for Mixer</h1>
+
+          <p className="text-lg font-medium mb-6 underline">
+            Mixer does not share any mobile information with third parties or
+            affiliates for marketing or promotional purposes.
+          </p>
+
           <div className="space-y-6 text-gray-700">
             <section>
               <h2 className="text-2xl font-semibold mb-4">1. Introduction</h2>
@@ -132,6 +138,13 @@ export const Waitlist: React.FC = () => {
                 <li>Preventing fraud and misuse</li>
                 <li>Complying with legal obligations</li>
               </ul>
+              <p className="mt-3 font-medium">
+                We do not share your mobile information with any third parties
+                or affiliates for marketing or promotional purposes. Information
+                sharing to subcontractors in support services, such as customer
+                service, is permitted, but all other use cases exclude text
+                messaging originator opt-in data and consent.
+              </p>
             </section>
 
             <section>
@@ -161,11 +174,71 @@ export const Waitlist: React.FC = () => {
                 also contact our support team to manage your messaging
                 preferences.
               </p>
+              <p className="mt-3">
+                When you opt in to receive text messages from us, you will
+                receive an immediate confirmation message containing:
+              </p>
+              <ul className="list-disc ml-6 mt-2">
+                <li>Program description (Mixer)</li>
+                <li>Customer care contact information</li>
+                <li>Opt-out instructions</li>
+                <li>Message frequency disclosure</li>
+                <li>"Message and data rates may apply" disclosure</li>
+              </ul>
+              <p className="mt-3">
+                Example opt-in confirmation: "You are successfully opted in for
+                messages from Mixer for account notifications. Message and data
+                rates may apply. Reply HELP for additional support. Reply STOP
+                to unsubscribe."
+              </p>
+              <p className="mt-3">
+                Example opt-out confirmation: "You have successfully been
+                unsubscribed from Mixer. You will not receive any more messages
+                from this number."
+              </p>
+              <p className="mt-3">
+                Example help response: "Mixer: Please visit www.mixer.dating or
+                email hey@mixer.dating for support. To opt-out, reply STOP."
+              </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold mb-4">
-                5. Analytics and Tracking
+                5. Consent to Receive Messages
+              </h2>
+              <p>
+                We obtain your consent to receive text messages in the following
+                ways:
+              </p>
+              <ul className="list-disc ml-6 mt-2">
+                <li>
+                  <strong>Website Opt-in:</strong> When you provide your phone
+                  number on our website, you'll see clear language stating: "By
+                  providing your phone number, you agree to receive text
+                  messages from Mixer. Message and data rates may apply. Message
+                  frequency varies."
+                </li>
+                <li>
+                  <strong>In-App Opt-in:</strong> When you enable notifications
+                  in our app, we clearly disclose that you'll receive text
+                  messages.
+                </li>
+                <li>
+                  <strong>Text Message Opt-in:</strong> You can opt in by
+                  texting specific keywords like "START", "OPTIN", "IN" to our
+                  designated number.
+                </li>
+              </ul>
+              <p className="mt-3">
+                Your consent is specific to our messaging program and is not
+                transferable. We maintain records of your consent in compliance
+                with industry regulations.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4">
+                6. Analytics and Tracking
               </h2>
               <p>
                 We use analytics services (including PostHog) to understand how
@@ -185,7 +258,7 @@ export const Waitlist: React.FC = () => {
 
             <section>
               <h2 className="text-2xl font-semibold mb-4">
-                6. Data Storage and Security
+                7. Data Storage and Security
               </h2>
               <p>
                 We implement appropriate technical and organizational measures
@@ -200,7 +273,7 @@ export const Waitlist: React.FC = () => {
 
             <section>
               <h2 className="text-2xl font-semibold mb-4">
-                7. Your Rights and Choices
+                8. Your Rights and Choices
               </h2>
               <p>You have the right to:</p>
               <ul className="list-disc ml-6 mt-2">
