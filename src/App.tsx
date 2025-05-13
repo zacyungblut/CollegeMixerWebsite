@@ -12,6 +12,7 @@ import SecretLogin from "./components/SecretLogin";
 import styled from "styled-components";
 import BurnerPortal from "./components/BurnerPortal";
 import ContentTerminal from "./components/ContentTerminal";
+import GroupProfile from "./components/GroupProfile";
 
 const FullHeightContainer = styled.div`
   min-height: 100vh;
@@ -60,6 +61,7 @@ function App() {
         <Route path="/casting" element={<Casting />} />
         <Route path="/AddFriend" element={<ReferFriend />} />
         <Route path="/App-Store" element={<ReferFriend />} />
+        <Route path="/group/:groupId" element={<GroupProfile />} />
         <Route
           path="/terminal"
           element={
