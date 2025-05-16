@@ -322,7 +322,9 @@ function GroupProfile() {
           const group = response.data.friendGroup;
           const photoIndices = {
             group: 0,
-            ...Object.fromEntries((group.members || []).map((m) => [m._id, 0])),
+            ...Object.fromEntries(
+              (group.members || []).map((m: { _id: string }) => [m._id, 0])
+            ),
           };
           setSelectedPhotos(photoIndices);
         }
