@@ -8,7 +8,7 @@ import { useAppSelector, useAppDispatch } from "../hooks/hooks";
 import { toast } from "react-toastify";
 import { subscribeToWaitlist } from "../actions/emailMarketing";
 import GuelphMixerLogo from "../assets/GuelphMixer.png";
-import MixerLogo from "../assets/MixerLogo.png";
+import MixerLogo from "../assets/mixer_logo.png";
 import Confetti from "react-confetti";
 
 export const Waitlist: React.FC = () => {
@@ -106,7 +106,7 @@ export const Waitlist: React.FC = () => {
   if (isSubmitted === true) {
     return (
       <>
-        <Confetti colors={["#ddefc3", "#c2e2ec", "#f4bec7", "#fbeab9"]} />
+        {/* <Confetti colors={["#ddefc3", "#c2e2ec", "#f4bec7", "#fbeab9"]} /> */}
         <div className="flex flex-col min-h-screen font-sans -mt-10 bg-gradient-to-b shadow from-white to-gray-50 relative">
           <main className="container mx-auto px-4 flex-grow">
             <div className="w-3/4 mx-auto"></div>
@@ -128,7 +128,7 @@ export const Waitlist: React.FC = () => {
                 <button
                   onClick={() => {
                     handleLinkClick(
-                      "https://apps.apple.com/ca/app/mixer-dating/id1671245143"
+                      "https://apps.apple.com/us/app/mixer-dating-with-friends/id1671245143"
                     );
                   }}
                   className="bg-slate-700 rounded-lg p-3 text-white font-semibold transition-all duration-200 hover:bg-pink-600 hover:scale-95">

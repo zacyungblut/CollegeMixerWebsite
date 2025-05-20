@@ -2,139 +2,101 @@ import { useState, useEffect } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
+import MixerLogo from "../assets/mixer_logo.png"; // Make sure this path is correct
 
 const Container = styled.div`
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f5f5f5;
+  background-color: #121212;
+  min-height: 100vh;
+  padding-bottom: 80px;
+  width: 100%;
+`;
+
+const GroupHeader = styled.div`
+  background-color: #121212;
+  padding: 10px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+`;
+
+const GroupTitle = styled.h1`
+  font-size: 28px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+`;
+
+const ActionButtonsContainer = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+`;
+
+const IconButton = styled.button`
+  padding: 8px;
+  background: none;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+`;
+
+const ContentContainer = styled.div`
+  background: linear-gradient(to bottom, #121212, #303030);
+  padding-bottom: 20px;
 `;
 
 const GroupCard = styled.div`
-  background-color: white;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-`;
-
-const PhotoGrid = styled.div`
   position: relative;
-  aspect-ratio: 4/5;
-  overflow: hidden;
-  border-radius: 12px 12px 0 0;
+  margin-bottom: 8px;
 `;
 
 const Photo = styled.img`
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
 `;
 
-const PhotoIndicators = styled.div`
+const SkipButtonContainer = styled.div`
   position: absolute;
-  bottom: 24px;
-  left: 0;
-  right: 0;
+  bottom: 16px;
+  right: 16px;
+`;
+
+const ShadedCircleButton = styled.button`
+  width: 44px;
+  height: 44px;
+  border-radius: 22px;
+  background-color: rgba(100, 100, 100, 0.4);
+  border: none;
   display: flex;
   justify-content: center;
-  gap: 6px;
-`;
-
-const Indicator = styled.div<{ active: boolean }>`
-  width: 8px;
-  height: 8px;
-  border-radius: 4px;
-  background-color: ${(props) =>
-    props.active ? "#FFFFFF" : "rgba(255, 255, 255, 0.5)"};
-`;
-
-const GroupInfo = styled.div`
-  padding: 16px;
-  border-bottom: 1px solid #f0f0f0;
-`;
-
-const GroupName = styled.h1`
-  margin: 0 0 8px 0;
-  font-size: 28px;
-  font-weight: 600;
-`;
-
-const ActiveStatus = styled.p`
-  color: #2a5d00;
-  font-size: 13px;
-  font-weight: 500;
-  margin: 2px 0 0 0;
-`;
-
-const Description = styled.p`
-  font-size: 16px;
-  line-height: 1.6;
-  margin: 16px 0;
-  color: #333;
-`;
-
-const MemberCard = styled.div`
-  background-color: white;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-`;
-
-const MemberPhoto = styled.div`
-  aspect-ratio: 1;
-  overflow: hidden;
-`;
-
-const MemberInfo = styled.div`
-  padding: 16px;
-  border: 1.5px solid darkgray;
-  border-top: none;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-`;
-
-const MemberHeader = styled.div`
-  display: flex;
   align-items: center;
-  padding-bottom: 12px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid #dddddd;
-`;
-
-const MemberName = styled.h2`
-  font-size: 22px;
-  font-weight: 600;
-  color: #000;
-  margin: 0 8px 0 0;
-`;
-
-const MemberAge = styled.span`
-  font-size: 22px;
-  color: #555;
-  font-weight: 400;
-`;
-
-const MemberBio = styled.p`
-  font-size: 16px;
-  color: #000;
-  line-height: 22px;
-  margin: 0;
+  cursor: pointer;
+  color: white;
+  font-size: 28px;
 `;
 
 const PromptCard = styled.div`
-  position: relative;
-  margin: 8px 0 16px 0;
-  background-color: white;
+  background-color: #1e1e1e;
   border-radius: 16px;
-  border: 1px solid #e0e0e0;
   overflow: hidden;
+  margin: 8px 12px;
+  border: 1px solid #333333;
+  position: relative;
 `;
 
 const PromptShadow = styled.div`
   position: absolute;
-  background-color: #cccccc;
+  background-color: #333333;
   top: 4px;
   left: 0;
   right: 0;
@@ -144,31 +106,36 @@ const PromptShadow = styled.div`
 `;
 
 const QuestionSection = styled.div`
-  width: 100%;
   padding: 16px 24px 8px;
 `;
 
 const QuestionText = styled.p`
   font-size: 13px;
   font-weight: 600;
-  color: black;
+  color: #e0e0e0;
   margin: 0;
 `;
 
 const AnswerSection = styled.div`
   padding: 16px 24px;
-  background-color: white;
+  background-color: #1e1e1e;
 `;
 
 const AnswerText = styled.p`
   font-size: 24px;
   font-weight: 700;
-  color: #333;
+  color: #e0e0e0;
   line-height: 32px;
   margin: 0 0 16px 0;
 `;
 
 const FriendInfo = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const FriendDetails = styled.div`
   display: flex;
   align-items: center;
 `;
@@ -183,73 +150,200 @@ const FriendPhoto = styled.img`
 const FriendName = styled.span`
   font-size: 14px;
   font-weight: 500;
-  color: #666;
+  color: #bbbbbb;
 `;
 
-const FooterCard = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: white;
+const InterestsCard = styled.div`
+  margin: 12px 16px 20px;
   border-radius: 20px;
-  padding: 10px 12px;
-  margin: 16px 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 `;
 
-const FooterButton = styled.button`
+const InterestsContainer = styled.div`
+  background: linear-gradient(to bottom, #2a2a2a, #1e1e1e);
+  border-radius: 20px;
+  border: 1px solid #333333;
+`;
+
+const InterestsHeader = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 18px;
+  margin-bottom: 14px;
+`;
+
+const InterestIconContainer = styled.div`
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  background-color: #4a90e2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+`;
+
+const InterestIcon = styled.span`
+  font-size: 18px;
+  color: #ffffff;
+`;
+
+const InterestTitle = styled.h3`
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.3px;
+  margin: 0;
+`;
+
+const InterestsGrid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 18px 22px;
+`;
+
+const InterestPill = styled.div`
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 8px 16px;
+  margin: 0 8px 10px 0;
+  font-size: 14px;
+  color: #e0e0e0;
+  font-weight: 500;
+`;
+
+const MembersTitleContainer = styled.div`
+  padding: 16px;
+`;
+
+const MembersTitle = styled.h2`
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+`;
+
+const MemberRow = styled.div`
+  display: flex;
+  margin: 0 16px 16px;
+  gap: 16px;
+`;
+
+const MemberColumnItem = styled.div`
+  flex: 1;
+`;
+
+const MemberPhotoThumbnail = styled.div`
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 2/3;
+  position: relative;
+  cursor: pointer;
+`;
+
+const MemberPhoto = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+const GradientOverlay = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    white
+  );
+  z-index: 1;
+`;
+
+const NameOverlay = styled.div`
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  padding: 8px;
+  z-index: 2;
+`;
+
+const NameText = styled.span`
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+  padding-bottom: 4px;
+`;
+
+const AgeText = styled.span`
+  color: white;
+  font-weight: 500;
+`;
+
+const PhotoCountBadge = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  border-radius: 12px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 5;
+`;
+
+// Add a logo container
+const LogoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  background-color: #121212;
+`;
+
+const Logo = styled.img`
+  width: 120px;
+  height: auto;
+`;
+
+// Add a download button container
+const DownloadButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
+  padding: 30px 0;
+  background-color: #1e1e1e;
+  margin-top: 40px;
 `;
 
-const IconContainer = styled.div`
-  width: 44px;
-  height: 44px;
-  background-color: #ededed;
-  border-radius: 22px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 4px;
-`;
-
-const ShareIconContainer = styled.div`
-  width: 50px;
-  height: 50px;
-  background-color: #fff5eb;
-  border-radius: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-`;
-
-const ButtonText = styled.span<{ isShare?: boolean }>`
-  font-size: 12px;
-  color: ${(props) => (props.isShare ? "#ff8c00" : "#666")};
-  font-weight: ${(props) => (props.isShare ? "700" : "600")};
-`;
-
-const CTAButton = styled.a`
-  display: block;
-  background-color: #ff8c00;
+const DownloadButton = styled.a`
+  background: linear-gradient(45deg, #ff8c00, #ff5f1f);
   color: white;
-  text-align: center;
-  padding: 15px 20px;
-  border-radius: 8px;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 14px 24px;
+  border-radius: 30px;
   text-decoration: none;
-  margin-top: 20px;
+  display: inline-block;
+  margin-top: 16px;
+  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+  transition: all 0.3s ease;
 
   &:hover {
-    background-color: #e67e00;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 140, 0, 0.4);
   }
+`;
+
+const DownloadText = styled.p`
+  color: #e0e0e0;
+  font-size: 18px;
+  margin-bottom: 8px;
+  text-align: center;
 `;
 
 interface GroupPhotoType {
@@ -281,6 +375,7 @@ interface GroupData {
       photos: string[];
     };
   };
+  interests?: string[];
   memberPrompts?: {
     memberId: string;
     prompt: {
@@ -311,7 +406,6 @@ function GroupProfile() {
     const fetchGroupData = async () => {
       try {
         setLoading(true);
-        // Use the actual API endpoint from your friendGroupRoutes.ts
         const response = await axios.get(
           `https://mixer-backend.cfd/api/friend-groups/${groupId}`
         );
@@ -346,137 +440,336 @@ function GroupProfile() {
     setSelectedPhotos((prev) => ({ ...prev, [id]: index }));
   };
 
+  // Helper function to get appropriate emoji for each interest
+  const getEmojiForInterest = (interest: string): string => {
+    const emojiMap: { [key: string]: string } = {
+      Fortnite: "🎮",
+      "House parties": "🏠",
+      Travel: "✈️",
+      Investing: "💰",
+      Reading: "📚",
+      Cooking: "🍳",
+      Photography: "📷",
+      Hiking: "🥾",
+      Movies: "🎬",
+      Gaming: "🎲",
+    };
+
+    return emojiMap[interest] || "🔍"; // Default emoji if not found
+  };
+
+  // Calculate age from birthday
+  const getAge = (birthday: string): number => {
+    const birthDate = new Date(birthday);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDifference = today.getMonth() - birthDate.getMonth();
+
+    if (
+      monthDifference < 0 ||
+      (monthDifference === 0 && today.getDate() < birthDate.getDate())
+    ) {
+      age--;
+    }
+
+    return age;
+  };
+
+  const renderGroupContent = () => {
+    if (!groupData) return null;
+
+    const content = [];
+    const memberPrompts = [];
+
+    // Add first group photo
+    if (groupData.photos && groupData.photos.length > 0) {
+      const firstPhoto =
+        typeof groupData.photos[0] === "string"
+          ? groupData.photos[0]
+          : groupData.photos[0].url;
+
+      content.push(
+        <GroupCard key="first-group-photo">
+          <Photo src={firstPhoto} alt={groupData.name} />
+          <SkipButtonContainer>
+            <ShadedCircleButton>
+              <i className="fa fa-close" style={{ fontSize: "28px" }}></i>
+            </ShadedCircleButton>
+          </SkipButtonContainer>
+        </GroupCard>
+      );
+    }
+
+    // Add group prompt if it exists (no boilerplate)
+    if (groupData.groupPrompt) {
+      content.push(
+        <PromptCard key="group-prompt">
+          <PromptShadow />
+          <QuestionSection>
+            <QuestionText>{groupData.groupPrompt.question}</QuestionText>
+          </QuestionSection>
+          <AnswerSection>
+            <AnswerText>{groupData.groupPrompt.answer}</AnswerText>
+            <FriendInfo>
+              <FriendDetails>
+                <FriendPhoto
+                  src={
+                    groupData.groupPrompt.submittedBy?.photos?.[0] ||
+                    "/default-profile.jpg"
+                  }
+                  alt={groupData.groupPrompt.submittedBy?.name || "Friend"}
+                />
+                <FriendName>
+                  - {groupData.groupPrompt.submittedBy?.name || "Friend"}
+                </FriendName>
+              </FriendDetails>
+            </FriendInfo>
+          </AnswerSection>
+        </PromptCard>
+      );
+    }
+
+    // Add interests card if interests exist
+    if (groupData.interests && groupData.interests.length > 0) {
+      content.push(
+        <InterestsCard key="interests-card">
+          <InterestsContainer>
+            <InterestsHeader>
+              <InterestIconContainer>
+                <InterestIcon>🔍</InterestIcon>
+              </InterestIconContainer>
+              <InterestTitle>Interests</InterestTitle>
+            </InterestsHeader>
+            <InterestsGrid>
+              {groupData.interests.map((interest, index) => (
+                <InterestPill key={`interest-${index}`}>
+                  {interest}
+                </InterestPill>
+              ))}
+            </InterestsGrid>
+          </InterestsContainer>
+        </InterestsCard>
+      );
+    }
+
+    // Add remaining photos (if any)
+    if (groupData.photos && groupData.photos.length > 1) {
+      for (let i = 1; i < groupData.photos.length; i++) {
+        const photo =
+          typeof groupData.photos[i] === "string"
+            ? groupData.photos[i]
+            : groupData.photos[i].url;
+
+        content.push(
+          <GroupCard key={`group-photo-${i}`}>
+            <Photo src={photo as string} alt={groupData.name} />
+          </GroupCard>
+        );
+      }
+    }
+
+    // Add member cards
+    if (groupData.members && groupData.members.length > 0) {
+      content.push(
+        <MembersTitleContainer key="members-title">
+          <MembersTitle>
+            Members ({groupData.members?.length || 0})
+          </MembersTitle>
+        </MembersTitleContainer>
+      );
+
+      // Process members in pairs
+      for (let i = 0; i < groupData.members.length; i += 2) {
+        const firstMember = groupData.members[i];
+        const secondMember = groupData.members[i + 1];
+
+        content.push(
+          <MemberRow key={`member-row-${i}`}>
+            <MemberColumnItem>
+              <MemberPhotoThumbnail>
+                <MemberPhoto
+                  src={firstMember.photos?.[0] || "/default-profile.jpg"}
+                  alt={firstMember.name}
+                />
+                {firstMember.photos && firstMember.photos.length > 1 && (
+                  <PhotoCountBadge>
+                    +{firstMember.photos.length - 1}
+                  </PhotoCountBadge>
+                )}
+                <GradientOverlay />
+                <NameOverlay>
+                  <NameText>
+                    {firstMember.name}
+                    {firstMember.birthday && (
+                      <AgeText> {getAge(firstMember.birthday)}</AgeText>
+                    )}
+                  </NameText>
+                </NameOverlay>
+              </MemberPhotoThumbnail>
+            </MemberColumnItem>
+
+            {secondMember ? (
+              <MemberColumnItem>
+                <MemberPhotoThumbnail>
+                  <MemberPhoto
+                    src={secondMember.photos?.[0] || "/default-profile.jpg"}
+                    alt={secondMember.name}
+                  />
+                  {secondMember.photos && secondMember.photos.length > 1 && (
+                    <PhotoCountBadge>
+                      +{secondMember.photos.length - 1}
+                    </PhotoCountBadge>
+                  )}
+                  <GradientOverlay />
+                  <NameOverlay>
+                    <NameText>
+                      {secondMember.name}
+                      {secondMember.birthday && (
+                        <AgeText> {getAge(secondMember.birthday)}</AgeText>
+                      )}
+                    </NameText>
+                  </NameOverlay>
+                </MemberPhotoThumbnail>
+              </MemberColumnItem>
+            ) : (
+              // Empty placeholder to maintain grid layout when odd number of members
+              <MemberColumnItem />
+            )}
+          </MemberRow>
+        );
+
+        // Add member prompts if they exist
+        if (groupData.memberPrompts) {
+          // First member prompt
+          const firstMemberPrompt = groupData.memberPrompts.find(
+            (mp) => mp.memberId === firstMember._id
+          )?.prompt;
+
+          if (firstMemberPrompt) {
+            memberPrompts.push(
+              <PromptCard key={`${firstMember._id}-prompt`}>
+                <PromptShadow />
+                <QuestionSection>
+                  <QuestionText>
+                    {firstMemberPrompt.question.replace(
+                      "{user}",
+                      firstMember.name
+                    )}
+                  </QuestionText>
+                </QuestionSection>
+                <AnswerSection>
+                  <AnswerText>{firstMemberPrompt.answer}</AnswerText>
+                  <FriendInfo>
+                    <FriendDetails>
+                      <FriendPhoto
+                        src={
+                          firstMemberPrompt.submittedBy?.photos?.[0] ||
+                          "/default-profile.jpg"
+                        }
+                        alt={firstMemberPrompt.submittedBy?.name || "Friend"}
+                      />
+                      <FriendName>
+                        - {firstMemberPrompt.submittedBy?.name || "Friend"}
+                      </FriendName>
+                    </FriendDetails>
+                  </FriendInfo>
+                </AnswerSection>
+              </PromptCard>
+            );
+          }
+
+          // Second member prompt (if exists)
+          if (secondMember) {
+            const secondMemberPrompt = groupData.memberPrompts.find(
+              (mp) => mp.memberId === secondMember._id
+            )?.prompt;
+
+            if (secondMemberPrompt) {
+              memberPrompts.push(
+                <PromptCard key={`${secondMember._id}-prompt`}>
+                  <PromptShadow />
+                  <QuestionSection>
+                    <QuestionText>
+                      {secondMemberPrompt.question.replace(
+                        "{user}",
+                        secondMember.name
+                      )}
+                    </QuestionText>
+                  </QuestionSection>
+                  <AnswerSection>
+                    <AnswerText>{secondMemberPrompt.answer}</AnswerText>
+                    <FriendInfo>
+                      <FriendDetails>
+                        <FriendPhoto
+                          src={
+                            secondMemberPrompt.submittedBy?.photos?.[0] ||
+                            "/default-profile.jpg"
+                          }
+                          alt={secondMemberPrompt.submittedBy?.name || "Friend"}
+                        />
+                        <FriendName>
+                          - {secondMemberPrompt.submittedBy?.name || "Friend"}
+                        </FriendName>
+                      </FriendDetails>
+                    </FriendInfo>
+                  </AnswerSection>
+                </PromptCard>
+              );
+            }
+          }
+        }
+      }
+    }
+
+    // Add all member prompts after all member thumbnails
+    return [...content, ...memberPrompts];
+  };
+
   if (loading) {
-    return <Container>Loading group information...</Container>;
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <Container>{error}</Container>;
+    return <div>{error}</div>;
   }
 
   if (!groupData) {
-    return <Container>Group not found</Container>;
+    return <div>No group found</div>;
   }
-
-  // Render a prompt card
-  const renderPrompt = (prompt: any, aboutUser?: string) => {
-    if (!prompt) return null;
-
-    return (
-      <PromptCard>
-        <PromptShadow />
-        <QuestionSection>
-          <QuestionText>
-            {prompt.question?.replace("{user}", aboutUser || "")}
-          </QuestionText>
-        </QuestionSection>
-        <AnswerSection>
-          <AnswerText>{prompt.answer}</AnswerText>
-          <FriendInfo>
-            <FriendPhoto
-              src={prompt.submittedBy?.photos?.[0] || "/default-profile.jpg"}
-              alt={prompt.submittedBy?.name || "Friend"}
-            />
-            <FriendName>- {prompt.submittedBy?.name || "Friend"}</FriendName>
-          </FriendInfo>
-        </AnswerSection>
-      </PromptCard>
-    );
-  };
 
   return (
     <Container>
-      {/* Group Card */}
-      <GroupCard>
-        <PhotoGrid>
-          {groupData.photos && groupData.photos.length > 0 && (
-            <>
-              <Photo
-                src={groupData.photos[selectedPhotos.group || 0].url}
-                alt={groupData.name}
-                onClick={() => {
-                  const nextIndex =
-                    (selectedPhotos.group + 1) % groupData.photos.length;
-                  handlePhotoSelect("group", nextIndex);
-                }}
-              />
-              {groupData.photos.length > 1 && (
-                <PhotoIndicators>
-                  {groupData.photos.map((_, index) => (
-                    <Indicator
-                      key={index}
-                      active={index === selectedPhotos.group}
-                      onClick={() => handlePhotoSelect("group", index)}
-                    />
-                  ))}
-                </PhotoIndicators>
-              )}
-            </>
-          )}
-        </PhotoGrid>
+      {/* Add Logo at the top */}
+      <LogoContainer>
+        <Logo src={MixerLogo} alt="Mixer Logo" />
+      </LogoContainer>
 
-        <GroupInfo>
-          <GroupName>{groupData.name}</GroupName>
-          <ActiveStatus>Active now</ActiveStatus>
+      {/* Group Header */}
+      <GroupHeader>
+        <GroupTitle>{groupData.name}</GroupTitle>
+        <ActionButtonsContainer>
+          <IconButton>
+            <i className="fa fa-share" style={{ fontSize: "20px" }}></i>
+          </IconButton>
+          <IconButton>
+            <i className="fa fa-ellipsis-h" style={{ fontSize: "24px" }}></i>
+          </IconButton>
+        </ActionButtonsContainer>
+      </GroupHeader>
 
-          {groupData.description && (
-            <Description>{groupData.description}</Description>
-          )}
-        </GroupInfo>
-      </GroupCard>
+      {/* Group Content */}
+      <ContentContainer>{renderGroupContent()}</ContentContainer>
 
-      {/* Group Prompt */}
-      {groupData.groupPrompt && renderPrompt(groupData.groupPrompt)}
-
-      {/* Member Cards */}
-      {groupData.members &&
-        groupData.members.map((member, index) => {
-          const memberPrompt = groupData.memberPrompts?.find(
-            (mp) => mp.memberId === member._id
-          )?.prompt;
-
-          return (
-            <div key={member._id || `member-${index}`}>
-              <MemberCard>
-                <MemberPhoto>
-                  {member.photos && member.photos.length > 0 && (
-                    <Photo
-                      src={member.photos[selectedPhotos[member._id] || 0]}
-                      alt={member.name}
-                      onClick={() => {
-                        const nextIndex =
-                          (selectedPhotos[member._id] + 1) %
-                          member.photos.length;
-                        handlePhotoSelect(member._id, nextIndex);
-                      }}
-                    />
-                  )}
-                </MemberPhoto>
-
-                <MemberInfo>
-                  <MemberHeader>
-                    <MemberName>{member.name}</MemberName>
-                    {member.birthday && (
-                      <MemberAge>
-                        {new Date().getFullYear() -
-                          new Date(member.birthday).getFullYear()}
-                      </MemberAge>
-                    )}
-                  </MemberHeader>
-
-                  {member.bio && <MemberBio>{member.bio}</MemberBio>}
-                </MemberInfo>
-              </MemberCard>
-
-              {/* Member Prompt */}
-              {memberPrompt && renderPrompt(memberPrompt, member.name)}
-            </div>
-          );
-        })}
-
-      <CTAButton href="https://apps.apple.com/us/app/mixer-dating-with-friends/id1671245143">
-        Download Mixer to connect with {groupData.name}
-      </CTAButton>
+      {/* Download Button */}
+      <DownloadButtonContainer>
+        <DownloadText>Want to match with {groupData.name}?</DownloadText>
+        <DownloadButton
+          href="https://apps.apple.com/us/app/mixer-dating-with-friends/id1671245143"
+          target="_blank"
+          rel="noopener noreferrer">
+          Download Mixer
+        </DownloadButton>
+      </DownloadButtonContainer>
     </Container>
   );
 }
